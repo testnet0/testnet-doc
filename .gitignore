@@ -1,5 +1,5 @@
 /.vscode/
 node_modules
 .github
-docs/.vitepress/cache
-docs/.vitepress/dist
+*cache
+*dist
