@@ -5,7 +5,7 @@
 如果需要修改配置文件，可以在以下路径进行更改：  
 `testnet/client_data/tools/OneForAll`
 
-![picture 0](https://cdn.jsdelivr.net/gh/testnet0/image@main/8623192296f44578b8f3b79a6ef32ec6e11485233e771b55de9b21c6f1e010ff.png)  
+![picture 0](https://github.com/testnet0/testnet/raw/main/8623192296f44578b8f3b79a6ef32ec6e11485233e771b55de9b21c6f1e010ff.png)  
 
 #### 注意事项
 1. 在新增或修改配置文件之前，请确认 **OneForAll** 工具已正确安装。

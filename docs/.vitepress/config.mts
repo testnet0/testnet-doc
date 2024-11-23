@@ -12,7 +12,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "主页", link: "/" },
-      { text: "文档", link: "/guide/Home" },
+      { text: "文档", link: "/guide/产品介绍" },
       { text: "V1.8", link: "/guide/更新日志" },
     ],
     sidebar: {
@@ -20,7 +20,7 @@ export default defineConfig({
         {
           text: "首页",
           items: [
-            { text: "产品介绍", link: "/guide/Home" },
+            { text: "产品介绍", link: "/guide/产品介绍" },
             { text: "更新日志", link: "/guide/更新日志" },
             {
               text: "常见问题",
@@ -66,7 +66,7 @@ export default defineConfig({
         {
           text: "首页",
           items: [
-            { text: "产品介绍", link: "/guide/Home" },
+            { text: "产品介绍", link: "/guide/产品介绍" },
             { text: "更新日志", link: "/guide/更新日志" },
             {
               text: "常见问题",
@@ -136,7 +136,7 @@ export default defineConfig({
         {
           text: "首页",
           items: [
-            { text: "产品介绍", link: "/guide/Home" },
+            { text: "产品介绍", link: "/guide/产品介绍" },
             { text: "更新日志", link: "/guide/更新日志" },
             {
               text: "常见问题",
