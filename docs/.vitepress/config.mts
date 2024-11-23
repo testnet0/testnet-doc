@@ -194,7 +194,7 @@ export default defineConfig({
       options: {
         appId: "CFMQMLCISS",
         apiKey: "a3c31a9c0f1b7de1e1fc9475efb0ce52",
-        indexName: "TestNet",
+        indexName: "crawler_TestNet doc",
       },
     },
     footer: {
