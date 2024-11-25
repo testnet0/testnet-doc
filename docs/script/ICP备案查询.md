@@ -5,7 +5,7 @@
 
 1. 点击 **工作流管理-任务列表**，找到已有的 ICP 备案查询任务，点击编辑：  
 
-![picture 5](https://github.com/testnet0/testnet/raw/main/ec272571903372fd01f58f70feff00de16123f678aae040b4336e0daf36013a2.png)  
+![picture 5](https://github.com/testnet0/image/raw/main/ec272571903372fd01f58f70feff00de16123f678aae040b4336e0daf36013a2.png)  
 
 2. 修改脚本内容部分，例如：  
    假设您找到的一个 ICP 备案查询接口为 `https://abc.com/api/icp/index.php?url=baidu.com`，返回包格式如下：

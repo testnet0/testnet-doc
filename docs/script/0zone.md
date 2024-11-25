@@ -9,6 +9,6 @@
 
 获取 key 后，参考[脚本配置](/script/脚本配置)修改：
 
-![picture 4](https://github.com/testnet0/testnet/raw/main/a63235f81c778b182ae2ca10b0d9a12293c75b9011dd5d136c0e6e8b34798d9e.png)  
+![picture 4](https://github.com/testnet0/image/raw/main/a63235f81c778b182ae2ca10b0d9a12293c75b9011dd5d136c0e6e8b34798d9e.png)  
 
 配置完成后，进入 **资产管理-公司**，点击 **0.zone 公司根域名收集**，即可开始收集公司的根域名。
