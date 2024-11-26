@@ -20,4 +20,24 @@
 ## 安装过程中报错
 如果在安装过程中遇到报错，请先查看[安装报错](安装报错)
 
+## 忘记密码
+如果忘记管理员密码，可以执行以下命令重置密码为`123456`
 
+#### 一、首先执行`cat .env`
+MYSQL_PASSWORD=之后部分为MySQL密码，记住这个密码:
+![图 0](https://github.com/testnet0/image/raw/main/d378613e45f786937f72759c4b415d04f0528497edd2072cacba83a8613a37a6.png)  
+#### 二、复制下面的命令执行：
+```
+docker exec -it testnet-mysql /bin/bash
+```
+#### 三、下面的PASSWORD替换为第一步的密码执行：
+```
+mysql -uroot -pPASSWORD
+```
+#### 四、复制下面的命令执行
+```
+UPDATE `sys_user` SET  `password` = 'cb362cfeefbf3d8d', `salt` = 'RCGTeGiH' WHERE `id` = 'e9ca23d68d884d4ebb19d07889727dae';
+```
+ ![图 2](https://github.com/testnet0/image/raw/main/4015525f77b274b06222d98efc83a69bffe7531658bb85490bea5039158434ff.png)  
+
+全部执行完成`admin`账号的默认密码被重置为`123456`
