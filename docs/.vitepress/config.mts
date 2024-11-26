@@ -7,7 +7,7 @@ export default defineConfig({
   title: "TestNet",
   lastUpdated: true,
   description: "资产管理系统",
-  base: '/testnet-doc/',
+  base: '/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
