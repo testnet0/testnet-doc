@@ -194,7 +194,7 @@ export default defineConfig({
       options: {
         appId: "CFMQMLCISS",
         apiKey: "a1e899386ebb1de65b33e8c0c30b793f",
-        indexName: "doc",
+        indexName: "test_netdoc_pages",
       },
     },
     footer: {
