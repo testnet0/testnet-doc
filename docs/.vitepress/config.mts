@@ -193,8 +193,8 @@ export default defineConfig({
       provider: "algolia",
       options: {
         appId: "CFMQMLCISS",
-        apiKey: "a3c31a9c0f1b7de1e1fc9475efb0ce52",
-        indexName: "crawler_TestNet doc",
+        apiKey: "a1e899386ebb1de65b33e8c0c30b793f",
+        indexName: "crawler_TestNet",
       },
     },
     footer: {
