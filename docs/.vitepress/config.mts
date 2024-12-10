@@ -129,6 +129,8 @@ export default defineConfig({
             { text: "katana", link: "/script/katana" },
             { text: "ffuf(需配置)", link: "/script/ffuf" },
             { text: "dirsearch", link: "/script/dirsearch" },
+            { text: "wih", link: "/script/wih" },
+            { text: "URLFinder", link: "/script/URLFinder" },
           ],
         },
       ],
