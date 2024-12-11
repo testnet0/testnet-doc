@@ -12,8 +12,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt install -y ./google-chrome-stable_current_amd64.deb
 rm -f ./google-chrome-stable_current_amd64.deb
 ```
-然后保存，点击更多-安装，安装截图相关工具。
-
 ## 二、配置腾讯云COS。
 
 配置方法如下：
