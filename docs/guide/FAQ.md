@@ -7,7 +7,7 @@
 
 ## 如何更新版本
 
-在安装目录执行bash build.sh 然后选择服务端或客户端更新：
+在安装目录执行bash build.sh 然后选择更新：
 
 ![picture 0](https://github.com/testnet0/image/raw/main/66ef5036e60c17bb61b6ca4bc949a3ec3ed40f63e58e46ddd8732eb2ce4e3e63.png)  
 
