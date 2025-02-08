@@ -2,17 +2,7 @@
 ### 使用场景：子域名列表、IP列表、端口列表
 
 项目自带了通过httpx探测Web及指纹功能，但如果需要网页截图和保存返回包功能，您需要自行配置：
-## 一、安装httpx截图工具
-执行`docker exec -it testnet-client /bin/bash`
-然后执行以下命令安装截图工具：
-```
-apt update
-apt install -y ttf-wqy-microhei ttf-wqy-zenhei
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt install -y ./google-chrome-stable_current_amd64.deb
-rm -f ./google-chrome-stable_current_amd64.deb
-```
-## 二、配置腾讯云COS。
+## 配置腾讯云COS。
 
 配置方法如下：
 1. 修改 `enableScreenshot` 为 `true`。
