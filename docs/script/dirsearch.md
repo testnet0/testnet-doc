@@ -2,7 +2,7 @@
 ### 使用场景：API列表
 
 如果需要修改配置文件或者字典，可以在以下路径进行更改：  
-`./testnet/client_data/tools/dirsearch/`
+`./testnet/data/client_data/tools`
 
 #### 注意事项
 1. 在新增或修改配置文件之前，请确认 **dirsearch** 工具已正确安装。
