@@ -40,6 +40,7 @@ export default defineConfig({
         {
           text: "进阶使用",
           items: [
+            { text: "项目管理", link: "/guide/项目管理" },
             { text: "资产管理", link: "/guide/资产管理" },
             { text: "空间引擎", link: "/guide/空间引擎使用教程" },
             { text: "AI助手", link: "/guide/AI助手使用教程" },
