@@ -41,17 +41,12 @@ Depending on the volume of network assets and concurrent scanning tasks, we reco
 
 ## Server One-Click Installation (Docker Compose)
 
-### 1. Clone & Initialize Setup
+### 1. Run Installation
 
-Run the following commands on your target server:
+Run the following command on your target server to automatically detect the fastest mirror source, download deployment scripts, and execute installation:
 
 ```bash
-git clone https://github.com/testnet0/testnet.git
-cd testnet/deploy
-
-# Grant execution permissions and launch automated installer
-chmod +x testnet.sh
-./testnet.sh install
+curl -fsSL https://raw.githubusercontent.com/testnet0/testnet-public/main/install.sh | bash
 ```
 
 The `install` command automatically executes the following setup steps:

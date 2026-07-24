@@ -45,17 +45,12 @@ description: 包含配置要求、服务端与节点安装、机器码授权激�
 
 ## 服务端一键安装 (Docker Compose)
 
-### 1. 第一步：下载部署包并运行安装
+### 1. 第一步：运行安装
 
-在您的目标服务器上执行以下命令来获取项目并运行安装脚本：
+在目标服务器上直接执行以下命令，引导脚本 `install.sh` 会自动探测最快镜像源、下载所需组件并完成安装：
 
 ```bash
-git clone https://github.com/testnet0/testnet.git
-cd testnet/deploy
-
-# 赋予脚本执行权限并启动自动化安装
-chmod +x testnet.sh
-./testnet.sh install
+curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | bash
 ```
 
 安装脚本会自动帮您完成以下准备工作：
