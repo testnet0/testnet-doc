@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%" fill="none">
+  <!-- Background with subtle grid pattern -->
+  <rect width="800" height="600" fill="#0f172a"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+    <linearGradient id="primary-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Glowing background elements for premium feel -->
+  <circle cx="200" cy="150" r="120" fill="#6366f1" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="600" cy="450" r="100" fill="#06b6d4" opacity="0.12" filter="url(#glow)"/>
+  <circle cx="400" cy="300" r="150" fill="#a855f7" opacity="0.08" filter="url(#glow)"/>
+
+  <!-- Connection Lines (Distributed Network) -->
+  <g stroke="#334155" stroke-width="2" opacity="0.6">
+    <!-- Server to database -->
+    <path d="M 400 220 L 400 130" stroke-dasharray="5 5"/>
+    <!-- Server to Clients -->
+    <path d="M 400 220 L 220 370"/>
+    <path d="M 400 220 L 400 370"/>
+    <path d="M 400 220 L 580 370"/>
+    <!-- Clients to scans -->
+    <path d="M 220 370 L 150 490" stroke="#475569" stroke-width="1.5"/>
+    <path d="M 220 370 L 290 490" stroke="#475569" stroke-width="1.5"/>
+    <path d="M 400 370 L 400 490" stroke="#475569" stroke-width="1.5"/>
+    <path d="M 580 370 L 510 490" stroke="#475569" stroke-width="1.5"/>
+    <path d="M 580 370 L 650 490" stroke="#475569" stroke-width="1.5"/>
+  </g>
+
+  <!-- Title / Brand Header -->
+  <text x="40" y="60" fill="white" font-family="system-ui, sans-serif" font-weight="800" font-size="28" letter-spacing="1">TESTNET</text>
+  <text x="175" y="60" fill="#94a3b8" font-family="system-ui, sans-serif" font-weight="400" font-size="16">Distributed Scan &amp; Asset Management</text>
+
+  <!-- Database & Redis (Top Center) -->
+  <g transform="translate(400, 100)" filter="url(#glow)">
+    <rect x="-100" y="-40" width="200" height="60" rx="10" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <rect x="-90" y="-30" width="80" height="40" rx="6" fill="#0f172a" stroke="#6366f1" stroke-width="1"/>
+    <text x="-50" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="600" font-size="12" text-anchor="middle">MySQL 8.0</text>
+    <rect x="10" y="-30" width="80" height="40" rx="6" fill="#0f172a" stroke="#a855f7" stroke-width="1"/>
+    <text x="50" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="600" font-size="12" text-anchor="middle">Redis 7</text>
+  </g>
+
+  <!-- Central Server (Center) -->
+  <g transform="translate(400, 220)" filter="url(#glow)">
+    <rect x="-110" y="-35" width="220" height="70" rx="12" fill="url(#primary-grad)" stroke="#818cf8" stroke-width="2"/>
+    <text x="0" y="0" fill="white" font-family="system-ui, sans-serif" font-weight="800" font-size="18" text-anchor="middle" letter-spacing="0.5">TestNet Server</text>
+    <text x="0" y="20" fill="#c7d2fe" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">Spring Boot 3.4.3 &bull; Core Engine</text>
+  </g>
+
+  <!-- Distributed Client Nodes (Middle Layer) -->
+  <!-- Client Node 1 -->
+  <g transform="translate(220, 370)">
+    <rect x="-70" y="-25" width="140" height="50" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+    <text x="0" y="2" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="13" text-anchor="middle">Client Node A</text>
+    <text x="0" y="16" fill="#06b6d4" font-family="system-ui, sans-serif" font-weight="600" font-size="9" text-anchor="middle">Go 1.21+</text>
+  </g>
+
+  <!-- Client Node 2 -->
+  <g transform="translate(400, 370)">
+    <rect x="-70" y="-25" width="140" height="50" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+    <text x="0" y="2" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="13" text-anchor="middle">Client Node B</text>
+    <text x="0" y="16" fill="#06b6d4" font-family="system-ui, sans-serif" font-weight="600" font-size="9" text-anchor="middle">Go 1.21+</text>
+  </g>
+
+  <!-- Client Node 3 -->
+  <g transform="translate(580, 370)">
+    <rect x="-70" y="-25" width="140" height="50" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+    <text x="0" y="2" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="13" text-anchor="middle">Client Node C</text>
+    <text x="0" y="16" fill="#06b6d4" font-family="system-ui, sans-serif" font-weight="600" font-size="9" text-anchor="middle">Go 1.21+</text>
+  </g>
+
+  <!-- Tools / Executions (Bottom Layer) -->
+  <!-- Node A Scan Target 1 -->
+  <g transform="translate(150, 490)">
+    <circle cx="0" cy="0" r="28" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="0" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="10" text-anchor="middle">Subfinder</text>
+    <text x="0" y="8" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="8" text-anchor="middle">Docker/Recon</text>
+  </g>
+
+  <!-- Node A Scan Target 2 -->
+  <g transform="translate(290, 490)">
+    <circle cx="0" cy="0" r="28" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="0" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="10" text-anchor="middle">Naabu</text>
+    <text x="0" y="8" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="8" text-anchor="middle">Docker/Port</text>
+  </g>
+
+  <!-- Node B Scan Target 1 -->
+  <g transform="translate(400, 490)">
+    <circle cx="0" cy="0" r="28" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="0" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="10" text-anchor="middle">Httpx</text>
+    <text x="0" y="8" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="8" text-anchor="middle">Docker/Web</text>
+  </g>
+
+  <!-- Node C Scan Target 1 -->
+  <g transform="translate(510, 490)">
+    <circle cx="0" cy="0" r="28" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="0" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="10" text-anchor="middle">Nuclei</text>
+    <text x="0" y="8" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="8" text-anchor="middle">Docker/Vuln</text>
+  </g>
+
+  <!-- Node C Scan Target 2 -->
+  <g transform="translate(650, 490)">
+    <circle cx="0" cy="0" r="28" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="0" y="-6" fill="white" font-family="system-ui, sans-serif" font-weight="700" font-size="10" text-anchor="middle">TCP-Check</text>
+    <text x="0" y="8" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="8" text-anchor="middle">Native TCP</text>
+  </g>
+</svg>

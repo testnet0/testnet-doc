@@ -1,0 +1,9 @@
+# Dependency directories
+node_modules/
+
+# Build outputs
+.vitepress/dist/
+.vitepress/cache/
+
+# OS-generated files
+.DS_Store
