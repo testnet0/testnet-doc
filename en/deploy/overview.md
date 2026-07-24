@@ -46,7 +46,7 @@ Depending on the volume of network assets and concurrent scanning tasks, we reco
 Run the following commands on your target server:
 
 ```bash
-git clone https://github.com/testnet-project/testnet.git
+git clone https://github.com/testnet0/testnet.git
 cd testnet/deploy
 
 # Grant execution permissions and launch automated installer

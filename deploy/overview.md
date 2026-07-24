@@ -50,7 +50,7 @@ description: 包含配置要求、服务端与节点安装、机器码授权激�
 在您的目标服务器上执行以下命令来获取项目并运行安装脚本：
 
 ```bash
-git clone https://github.com/testnet-project/testnet.git
+git clone https://github.com/testnet0/testnet.git
 cd testnet/deploy
 
 # 赋予脚本执行权限并启动自动化安装

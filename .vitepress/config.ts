@@ -286,7 +286,7 @@ export default defineConfig({
         lightModeSwitchTitle: 'Switch to light mode',
         darkModeSwitchTitle: 'Switch to dark mode',
         editLink: {
-          pattern: 'https://github.com/testnet-project/testnet/edit/main/testnet-docs/:path',
+          pattern: 'https://github.com/testnet0/testnet/edit/main/testnet-docs/:path',
           text: 'Edit this page on GitHub',
         },
         lastUpdated: {
@@ -316,7 +316,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/testnet-project/testnet' },
+      { icon: 'github', link: 'https://github.com/testnet0/testnet' },
     ],
 
     search: {
@@ -383,7 +383,7 @@ export default defineConfig({
     darkModeSwitchTitle: '切换到深色模式',
 
     editLink: {
-      pattern: 'https://github.com/testnet-project/testnet/edit/main/testnet-docs/:path',
+      pattern: 'https://github.com/testnet0/testnet/edit/main/testnet-docs/:path',
       text: '在 GitHub 上编辑此页',
     },
 
