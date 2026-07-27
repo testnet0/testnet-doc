@@ -83,7 +83,7 @@ TestNet includes 22 built-in security tools, covering reconnaissance, scanning, 
 
 ### Httpx-Screenshot
 
-- **Category**: utility
+- **Category**: scan
 - **Description**: Web page screenshot tool based on Httpx, can batch screenshot web application interfaces
 - **Input**: Web application (WEB)
 - **Output**: Screenshot file
@@ -129,7 +129,7 @@ TestNet includes 22 built-in security tools, covering reconnaissance, scanning, 
 
 ### Katana
 
-- **Category**: scan
+- **Category**: recon
 - **Description**: High-speed web crawler that discovers links, forms, and API endpoints in web applications
 - **Input**: Web application (WEB)
 - **Output**: API endpoint (API)
@@ -157,14 +157,14 @@ TestNet includes 22 built-in security tools, covering reconnaissance, scanning, 
 
 ### Wappalyzer
 
-- **Category**: utility
+- **Category**: recon
 - **Description**: Web technology fingerprint identification tool that identifies frameworks, CMS, JavaScript libraries, etc. used by websites
 - **Input**: Web application (WEB)
 - **Output**: Updates WEB tech stack field
 
 ### WhatWeb
 
-- **Category**: utility
+- **Category**: recon
 - **Description**: Web application identification tool supporting identification of various CMS and web servers
 - **Input**: Web application (WEB)
 - **Output**: Updates WEB tech stack field

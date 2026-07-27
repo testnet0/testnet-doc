@@ -13,6 +13,9 @@ TestNet provides a rich set of system dictionaries, automation policies, and cle
 
 Asset rules trigger automatically when assets are saved (including scan tool reporting and manual imports) to implement automated list filtering, asset tagging, and ownership assignment.
 
+> [!NOTE]
+> In addition to the three asset smart rules listed below, asset configuration also includes **TAG** (tag dictionary management), **NOTIFICATION** (notification trigger rules), and **HISTORY_CLEANUP** (history cleanup config) types. See respective sections below for details.
+
 ### Rule Configuration Types (Config Type)
 
 | Rule Type (Config Type) | Target Effect | Effect Description |
@@ -20,6 +23,7 @@ Asset rules trigger automatically when assets are saved (including scan tool rep
 | **ACCESS_RULE (Access Control Rule)** | **BLACKLIST** / **WHITELIST** | Pre-save asset filtering. If an asset hits the blacklist or misses an enabled whitelist, it will be directly blocked and not saved to the database. |
 | **AUTO_TAG (Auto-Tagging)** | **Applied Tag List** (Tags, comma-separated) | Automatically applies specified tags to assets matching the rule characteristics. The tags used must already exist in the system tag dictionary, otherwise they will be automatically ignored. |
 | **OWNERSHIP (Ownership Mapping Rule)** | **Owner** / **Department** / **CompanyId** / **ProjectId** | Automatically sets the data ownership entity and responsible owner for assets. |
+| **NOTIFICATION (Notification Trigger Rule)** | **Channel + Recipients** | When asset events (e.g., new asset saved, new vulnerability found) occur, automatically sends notifications via configured channels. See [Notification Center](/en/notification/overview). |
 
 ### Match Fields and Match Algorithms
 
@@ -31,7 +35,7 @@ The system matches data by configuring specific match fields and algorithms for 
 - **If left empty**: The system will automatically attempt matching against **all core fields** of the asset type (e.g. for IP type: `ip`, `isp`, `country`, `province`, etc.).
 
 #### Match Algorithm (Matcher Type)
-Rules support the following 6 match algorithms when comparing field values:
+Rules support the following 7 match algorithms when comparing field values:
 
 | Match Type (Matcher Type) | Logic | Sample Match Value (Matcher Value) |
 |------------------------|----------|----------------------------|

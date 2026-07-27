@@ -12,9 +12,16 @@
 在工作流列表中点击目标工作流右侧的 **「定时设置」** 或在 DSL 头部声明：
 ```yaml
 kind: Workflow
-id: daily-domain-enum
-name: 每日域名自动巡检
-schedule: "0 0 2 * * ?" # 每天凌晨 2 点自动执行
+metadata:
+  id: daily-domain-enum
+  name: 每日域名自动巡检
+spec:
+  trigger:
+    type: CRON
+    enabled: true
+    cron: "0 0 2 * * ?" # 每天凌晨 2 点自动执行
+    input:
+      assetTypes: [DOMAIN]
 ```
 - **支持全量 Cron 语法**：秒 分 时 日 月 周 年；
 - **并发控制策略**：当上一周期执行还未结束（例如大规模全网段扫描耗时较长）而下一定时周期已到达时，系统默认采取 `SKIP`（跳过本周期）策略，防止任务队列堵塞与资源耗尽。
@@ -31,14 +38,16 @@ TestNet 拥有独特的事件驱动自动化架构 (`WorkflowAutoTriggerListener
 - **新增未修漏洞告警 (`NEW_VUL`)**：联动发送企业微信/钉钉紧急告警并抓取关键证据保存。
 
 ### 2. 联动过滤器规则
-用户在工作流中可配置基于 `AssetFilter` 的严格匹配逻辑，确保只对高优先级目标发起高耗时扫描：
+用户可在工作流 DSL 中将 `trigger.type` 设为 `AUTO`，并配合 `trigger.input` 配置资产类型与过滤条件，确保只对高优先级目标发起高耗时扫描：
 ```yaml
-autoTrigger:
-  enabled: true
-  events: ["NEW_ASSET"]
-  filters:
-    assetType: "SUBDOMAIN"
-    tagsInclude: ["生产环境"] # 仅限带生产标签的新子域名才触发
+spec:
+  trigger:
+    type: AUTO
+    enabled: true
+    input:
+      assetTypes: [SUBDOMAIN]
+      filter:
+        tagsInclude: ["生产环境"] # 仅限带生产标签的新子域名才触发
 ```
 
 ---
@@ -48,8 +57,8 @@ autoTrigger:
 通过 **「工作流管理」->「执行运行记录」**，您可以全面俯瞰系统内所有定时、手动或联动下发的工作流生命周期：
 
 ### 1. 运行状态分类与查询
-- **运行状态指示**：清晰标识 `PENDING` (排队中)、`RUNNING` (执行中)、`SUCCESS` (成功完成)、`FAILED` (失败异常) 与 `CANCELLED` (人工中止)；
-- **触发源溯源 (Trigger Source)**：明确标注每次运行是来自于 `MANUAL` (用户 `testnet` 触发)、`CRON` (定时调度触发) 还是 `EVENT` (由资产 `subdomain-xxxxx` 变更事件联动触发)。
+- **运行状态指示**：清晰标识 `RUNNING` (执行中)、`COMPLETED` (成功完成)、`PARTIAL` (部分成功)、`FAILED` (失败异常) 与 `CANCELLED` (人工中止)；
+- **触发源溯源 (Trigger Mode)**：明确标注每次运行是来自于 `MANUAL` (用户触发)、`CRON` (定时调度触发)、`ASSET` (由资产变更事件联动触发) 还是 `AI` (由 AI Agent 调用 MCP 触发)。
 
 ### 2. 节点任务分解追踪
 点击任意一条工作流运行记录，可以展开查看其 DAG 分解下发的子任务树：

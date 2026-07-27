@@ -12,10 +12,12 @@ This section provides technical reference materials for developers working with 
 | Document | Description |
 |----------|-------------|
 | [API Reference](/en/dev/api-reference) | REST API endpoints, request/response formats, authentication |
-| [API Endpoint Index](/en/dev/api-index) | Complete endpoint index generated from backend Controllers |
+| [API Endpoint Index](/en/dev/api-index) | Complete endpoint index from backend Controllers |
 | [Frontend Dev Guide](/en/dev/frontend-guide) | `ResourceCrudPage` component usage, CRUD scaffold development |
 | [Client Architecture](/en/dev/architecture) | Go scanning client architecture, executor implementations, security policies |
 | [E2E Testing Guide](/en/dev/testing-guide) | End-to-end browser automation test manual |
+| [Mock Testing Guide](/en/dev/mock-guide) | Mock data file specs and local mock execution |
+| [DSL Verification Tool](/en/dev/verify-guide) | testnet-client validate/test/verify subcommand usage |
 
 ---
 
@@ -94,5 +96,12 @@ Tokens are obtained via `POST /api/v1/auth/login` and are valid for **24 hours**
 - `POST /api/v1/auth/login`
 - `POST /api/v1/client/register`
 - `POST /api/v1/client/heartbeat`
+- `POST /api/v1/client/offline`
 - `GET /api/v1/client/task/**`
+- `GET /api/v1/client/storage/**`
+- `GET /api/v1/client/config-file/**`
+- `/api/v1/ws/**` (WebSocket endpoints)
 - `GET /api/v1/license/info`
+- `GET /api/v1/license/machine-id`
+- `POST /api/v1/license/activate`
+- `GET /error`, `OPTIONS /**`

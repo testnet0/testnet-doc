@@ -5,7 +5,6 @@ description: TestNet Client Architecture Design
 
 # TestNet Client Architecture Design
 
-
 ---
 
 ## I. Architecture Overview

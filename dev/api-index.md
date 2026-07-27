@@ -5,8 +5,8 @@ description: API 端点索引
 
 # TestNet API 端点索引
 
-> 从 Spring Controller 注解自动生成，由 `scripts/generate_api_index.py` 工具产出。
-> 新增或修改 Controller 路由后需重新运行脚本。
+> 本索引手工维护，涵盖所有 Spring Controller 暴露的 REST 端点。
+> 新增或修改 Controller 路由后请同步更新本表。
 
 总端点数：361
 

@@ -31,9 +31,6 @@ The task execution engine enforces strict state machine rules to guarantee idemp
 
 Without SSH access to remote probe nodes, TestNet's **Real-Time Log Viewer (`LogViewer`)** gives you a fluid terminal-grade monitoring experience right from the console:
 
-::: info [Image Placeholder: LogViewer Real-Time Streaming Logs & Keyword Filtering Interface]
-:::
-
 ### Real-Time Streaming Architecture
 - Remote scanning probes capture `stdout` and `stderr` buffers in real time, pushing them over secure streaming channels;
 - The backend relays these streams with ultra-low latency directly to your web console.

@@ -83,7 +83,7 @@ TestNet 内置 22 个安全工具，覆盖侦察、扫描、漏洞检测各阶�
 
 ### Httpx-Screenshot
 
-- **分类**：utility
+- **分类**：scan
 - **说明**：基于 Httpx 的 Web 页面截图工具，可批量截图 Web 应用界面
 - **输入**：Web 应用（WEB）
 - **输出**：截图文件
@@ -129,7 +129,7 @@ TestNet 内置 22 个安全工具，覆盖侦察、扫描、漏洞检测各阶�
 
 ### Katana
 
-- **分类**：scan
+- **分类**：recon
 - **说明**：高速 Web 爬虫，发现 Web 应用中的链接、表单、API 端点
 - **输入**：Web 应用（WEB）
 - **输出**：API 接口（API）
@@ -157,14 +157,14 @@ TestNet 内置 22 个安全工具，覆盖侦察、扫描、漏洞检测各阶�
 
 ### Wappalyzer
 
-- **分类**：utility
+- **分类**：recon
 - **说明**：Web 技术指纹识别工具，识别网站使用的框架、CMS、JavaScript 库等
 - **输入**：Web 应用（WEB）
 - **输出**：更新 WEB 的技术栈字段
 
 ### WhatWeb
 
-- **分类**：utility
+- **分类**：recon
 - **说明**：Web 应用识别工具，支持识别多种 CMS 和 Web 服务器
 - **输入**：Web 应用（WEB）
 - **输出**：更新 WEB 的技术栈字段

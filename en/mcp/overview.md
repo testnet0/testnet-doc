@@ -40,6 +40,18 @@ MCP is an open standard protocol published by Anthropic for integrating AI assis
 | `testnet://workflows` | Workflow list |
 | `testnet://tools` | Tool list |
 
+### 5 MCP Prompt Templates
+
+| Prompt Name | Function |
+|-------------|----------|
+| `asset_inventory_summary` | Asset inventory summary |
+| `workflow_selector` | Workflow recommendation selector |
+| `vul_triage` | Vulnerability triage & remediation |
+| `recon_plan` | Asset reconnaissance plan generation |
+| `mock_test_guide` | Mock test authoring guide |
+
+> See [MCP Prompt Templates](/en/mcp/prompts) for details.
+
 ---
 
 ## Usage Scenario Examples
@@ -82,6 +94,7 @@ TestNet MCP service endpoints:
 | `/mcp/v1/resources` | GET | Get resource list |
 | `/mcp/v1/resources/read` | GET | Read resource content |
 | `/mcp/v1/prompts` | GET | Get prompt list |
+| `/mcp/v1/prompts/get` | POST | Get rendered prompt content |
 
 ---
 
@@ -89,4 +102,6 @@ TestNet MCP service endpoints:
 
 - [MCP Tool Reference](/en/mcp/tools) — Parameters and examples for each tool
 - [MCP Resources](/en/mcp/resources) — Resource URIs and content descriptions
+- [MCP Prompt Templates](/en/mcp/prompts) — Prompt template parameters and examples
 - [Integration with Claude](/en/mcp/claude) — Configure Claude Code to use TestNet MCP
+- [Integration with Cursor](/en/mcp/cursor) — Configure Cursor to use TestNet MCP

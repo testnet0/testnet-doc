@@ -5,8 +5,8 @@ description: API Endpoint Index
 
 # TestNet API Endpoint Index
 
-> Auto-generated from Spring controller annotations by `scripts/generate_api_index.py`.
-> Re-run the script after adding or changing controller routes.
+> This index is maintained manually, covering all REST endpoints exposed by Spring controllers.
+> Please update this table after adding or changing controller routes.
 
 Total endpoints: 361
 

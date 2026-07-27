@@ -5,8 +5,6 @@ description: All-in-one deployment guide covering hardware requirements, server 
 
 # System Setup & Activation Guide
 
-
-
 ## Hardware & OS Requirements
 
 ### 1. Recommended Hardware Specifications
@@ -35,7 +33,6 @@ Depending on the volume of network assets and concurrent scanning tasks, we reco
   * **Docker Global DNS**: If probe containers fail to resolve external dependencies, add `"dns": ["223.5.5.5", "114.114.114.114", "8.8.8.8"]` to `/etc/docker/daemon.json`.
   * **SELinux Enforcement**: On CentOS / RHEL hosts, ensure SELinux permissions allow mounting `/var/run/docker.sock` without throwing `Permission denied`.
 * **Network & Firewall**: Ensure **HTTPS port `3100`** is open for users; if distributed probes run on external hosts, ensure they can reach **HTTP port `8081`** on the server node.
-
 
 ---
 
@@ -144,4 +141,35 @@ chmod +x testnet-client
   -name node-shanghai-native \
   -concurrency 8
 ```
+
+After deployment, log in to the management dashboard and navigate to **"Scanning Nodes" → "Node Pool Management"** to view the newly joined node, its online status, and concurrency limits.
+
+---
+
+## Scanning Node Environment Variables Reference
+
+The scanning node supports overriding `config.yaml` settings via `TESTNET_` prefixed environment variables. The complete list:
+
+| Environment Variable | Type | Description |
+|---------------------|------|-------------|
+| `TESTNET_SERVER_URL` | string | Server URL (e.g., `http://host:8081` or `https://host:3100`) |
+| `TESTNET_SERVER_TLS_ENABLED` | bool | Enable TLS (`true`/`1`) |
+| `TESTNET_SERVER_TLS_INSECURE_SKIP_VERIFY` | bool | Skip TLS certificate verification (set `true` for self-signed certs) |
+| `TESTNET_CLIENT_SECRET` | string | Node connection secret (from server `.env`) |
+| `TESTNET_NODE_NAME` | string | Node name |
+| `TESTNET_LOG_LEVEL` | string | Log level (`debug`/`info`/`warn`/`error`) |
+| `TESTNET_MAX_CONCURRENT` | int | Max concurrent tasks (default 10) |
+| `TESTNET_POLL_TIMEOUT` | duration | Long-poll timeout (e.g., `30s`) |
+| `TESTNET_POLL_INTERVAL` | duration | Long-poll interval (e.g., `5s`) |
+| `TESTNET_HEARTBEAT_INTERVAL` | duration | Heartbeat interval (e.g., `15s`) |
+| `TESTNET_DOCKER_ENABLED` | bool | Enable Docker executor (`true`/`1`) |
+| `TESTNET_SERVER_TIMEOUT` | duration | Server request timeout (e.g., `30s`) |
+| `TESTNET_WORK_DIR` | string | Task working directory |
+| `TESTNET_CACHE_DIR` | string | Cache directory |
+| `TESTNET_ALLOW_PRIVILEGED` | bool | Allow privileged container execution (default `false`, high risk) |
+| `TESTNET_ALLOW_SSRF` | bool | Allow SSRF probing internal networks (default `false`, high risk) |
+| `TESTNET_ALLOWED_VOLUME_PATHS` | string | Allowed mount paths (comma-separated, e.g., `/tmp/,/opt/testnet/`) |
+
+> [!WARNING]
+> `TESTNET_ALLOW_PRIVILEGED` and `TESTNET_ALLOW_SSRF` pose security risks. Only enable them in controlled internal network debugging. Keep them at default `false` in production. See [Scanning Node Security & Hardening](/en/client/security).
 

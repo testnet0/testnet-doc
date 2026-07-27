@@ -5,9 +5,6 @@ description: 资产管理概述
 
 # 资产管理概述
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 资产管理是 TestNet 的核心模块，支持对企业网络资产进行系统化的录入、发现、分类与管理。
 
 ## 资产模型与关系图谱

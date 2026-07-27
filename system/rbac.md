@@ -5,9 +5,6 @@ description: RBAC 权限模型与部门数据隔离指南
 
 # 组织架构与安全权限隔离 (RBAC & Department Isolation)
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 TestNet 采用标准的 **RBAC (Role-Based Access Control) 权限控制模型** 结合 **组织部门 (`sysOrgCode`) 数据隔离架构**，为企业提供精细到按钮与字段级别的安全治理方案。
 
 ---

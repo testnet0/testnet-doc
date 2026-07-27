@@ -1,8 +1,5 @@
 # 工具商店与配置维护 (Tool Management)
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 TestNet 平台将具体扫描引擎（如 Nuclei, Nmap, Subfinder）解耦为独立的 Tool 模块。运维与安全人员可以通过 **内置/远端商店管理**、**默认执行参数模板** 以及 **远端配置文件同步 (`configfile`)**，实现对全网扫描工具链的集中式治理。
 
 ---

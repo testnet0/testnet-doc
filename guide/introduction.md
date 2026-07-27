@@ -34,22 +34,25 @@ TestNet 平台内置了从组织（公司、主域名）到网络主机（子域
 ::: details 侦察工具 (Recon)
 - **Subfinder** — 被动子域名发现
 - **Amass** — 子域名枚举
+- **OneForAll** — 综合子域名收集
 - **DNS-Lookup** — DNS 记录查询
 - **Dnsx** — DNS 批量解析
 - **Gau** — 获取历史 URL
 - **Waybackurls** — Wayback Machine URL 提取
-- **OneForAll** — 综合子域名收集
+- **Katana** — Web 爬虫与链接提取
+- **Wappalyzer** — Web 技术指纹识别
+- **Whatweb** — Web 应用识别
 :::
 
 ::: details 扫描工具 (Scan)
 - **Httpx** — HTTP 探活与信息采集
+- **Httpx-Screenshot** — Web 页面截图
 - **Naabu** — 端口扫描
 - **Masscan** — 高速端口扫描
 - **Nmap** — 服务与版本识别
-- **Katana** — Web 爬虫
+- **TCP-Check** — TCP 端口探测
 - **Dirsearch** — 目录扫描
 - **Ffuf** — Web 模糊测试
-- **TCP-Check** — TCP 端口探测
 :::
 
 ::: details 漏洞检测 (Vulnerability)
@@ -57,12 +60,6 @@ TestNet 平台内置了从组织（公司、主域名）到网络主机（子域
 - **Sqlmap** — SQL 注入检测
 - **Subzy** — 子域名接管检测
 - **Trufflehog** — 敏感信息泄露检测
-:::
-
-::: details 其他工具
-- **Wappalyzer** — Web 技术指纹识别
-- **Whatweb** — Web 应用识别
-- **Httpx-Screenshot** — Web 页面截图
 :::
 
 ## 系统架构

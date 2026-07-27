@@ -24,11 +24,15 @@ Click the 🔔 bell icon in the top navigation bar:
 | ⚠️ **New Vulnerability** | `NEW_VUL` | Scan discovers a new vulnerability |
 | 🔴 **Node Offline** | `NODE_OFFLINE` | Scanning node heartbeat timeout |
 | ❌ **Task Failed** | `TASK_FAILED` | Task execution failure (includes circuit breaker trips) |
+| ✅ **Task Completed** | `TASK_COMPLETED` | Task execution completed successfully |
 | ❌ **Workflow Failed** | `WORKFLOW_FAILED` | Workflow run failure |
+| ✅ **Workflow Completed** | `WORKFLOW_COMPLETED` | Workflow run completed successfully |
+| ❌ **Test Failed** | `TEST_FAILED` | Test case execution failure |
+| ✅ **Test Completed** | `TEST_COMPLETED` | Test case execution completed |
 
 ### System Alerts (Real-time WebSocket Push)
 
-High-priority alerts (node offline, task circuit breaker, etc.) are pushed in real time via WebSocket and appear as pop-up notices in the top-right corner.
+High-priority alerts (node offline, task circuit breaker, etc.) are pushed in real time via WebSocket `/topic/system-alert` and appear as pop-up notices in the top-right corner.
 
 ---
 
@@ -47,8 +51,10 @@ High-priority alerts (node offline, task circuit breaker, etc.) are pushed in re
 
 ### Configure Notification Rules
 
-1. Go to **"Notifications"** → **"Notification Config"**
-2. Click **"New Notification Rule"**
+Notification rules are configured under **"Asset Management" → "Asset Config" → "Notification Rules"** (reuses the asset configuration system, `configType=NOTIFICATION`):
+
+1. Go to **"Asset Management"** → **"Asset Config"** → **"Notification Rules"**
+2. Click **"New"** to create a notification rule
 3. Configure:
    - **Trigger Events**: Workflow complete, task failed, node offline, etc.
    - **Channel**: Email
@@ -63,8 +69,8 @@ Webhooks can push notifications to DingTalk, Lark, custom systems, and more.
 
 ### Set Up Webhook
 
-1. Go to **"Notifications"** → **"Notification Config"**
-2. Click **"New Notification Rule"**
+1. Go to **"Asset Management"** → **"Asset Config"** → **"Notification Rules"**
+2. Click **"New"** to create a notification rule
 3. Select **"Webhook"** as the notification channel
 4. Enter the Webhook URL
 5. (Optional) Configure custom HTTP headers
@@ -93,7 +99,7 @@ https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY
 
 ## Notification History
 
-Go to **"Notifications"** to view all historical notifications:
+Go to **"Message Center"** (`/notification`) under the **"System"** menu to view all historical notifications:
 
 - Filter by type (new asset, new vulnerability, node offline, etc.)
 - Filter by date range

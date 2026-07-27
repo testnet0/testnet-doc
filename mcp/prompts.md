@@ -9,7 +9,19 @@ TestNet 提供了 5 个内置的 MCP 提示词模板。AI 客户端（如 Claude
 
 所有提示词相关的接口定义如下：
 - 获取提示词列表：`GET /mcp/v1/prompts`
-- 获取提示词详情/使用提示词：可以使用标准 MCP 协议方式调用
+- 获取提示词渲染内容：`POST /mcp/v1/prompts/get`
+
+**获取提示词渲染内容**请求体示例：
+```json
+{
+  "name": "asset_inventory_summary",
+  "arguments": {
+    "projectId": "proj_001"
+  }
+}
+```
+
+响应返回渲染后的提示词文本（`messages[0].content.text`），可直接作为 AI 对话的上下文输入。
 
 ---
 

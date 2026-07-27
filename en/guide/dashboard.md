@@ -9,9 +9,6 @@ The Dashboard is the default home page after logging in to TestNet. It displays 
 
 ## Statistics Panel
 
-::: info [Image Placeholder: Console Dashboard Overview]
-:::
-
 The top of the dashboard shows global asset count cards:
 
 | Metric | Description |
@@ -24,9 +21,6 @@ The top of the dashboard shows global asset count cards:
 | **Web Apps** | Number of web applications in the current project |
 | **APIs** | Number of API endpoints in the current project |
 | **Vulnerabilities** | Number of vulnerabilities in the current project |
-
-::: info [Image Placeholder: Statistics Metrics Cards]
-:::
 
 ::: tip Project Filter
 Dashboard data defaults to the **currently selected project**. Switching projects via the top-nav project switcher automatically updates all statistics.

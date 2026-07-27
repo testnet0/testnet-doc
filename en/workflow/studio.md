@@ -18,9 +18,6 @@ Navigate to **"Workflow Management" -> "Workflow List"** to manage pipelines thr
 
 At the heart of the workflow studio is **FlowEditor**, an advanced code editor offering IDE-grade diagnostics and real-time schema validation:
 
-::: info [Image Placeholder: FlowEditor Online YAML Editing & Live Schema Diagnostic Panel]
-:::
-
 ### Real-Time Dependency & Syntax Diagnostics
 As you type, TestNet's `VNextDslValidator` checks your YAML specification against schema boundaries over WebSocket/HTTP:
 - **Circular Dependency Detection**: Instantly warns if `dependsOn` structures form an infinite cycle (e.g., Step A depends on B, while B depends on A);

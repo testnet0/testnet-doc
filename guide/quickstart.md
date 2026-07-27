@@ -11,9 +11,6 @@ description: 快速开始
 
 访问 TestNet 平台地址（默认 `https://your-server:3100`），使用管理员提供的账号密码登录。
 
-::: info [图片占位：登录页面]
-:::
-
 ::: info 默认账号
 - **账号**：`admin`
 - **密码**：部署时自动生成（查看部署日志或 `.env` 文件中的 `ADMIN_INIT_PASSWORD`）

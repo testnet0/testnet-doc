@@ -5,9 +5,6 @@ description: 空间测绘集成与配置
 
 # 空间测绘
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 TestNet 集成了主流网络空间搜索引擎，可直接在平台内查询资产信息并导入到资产库。
 
 ## 支持的搜索引擎

@@ -233,7 +233,6 @@ If a scan task fails on a probe node and UI logs are insufficient, follow these 
 
 ---
 
-
 ## Contact Support
 
 If the above content cannot resolve your issue, please:

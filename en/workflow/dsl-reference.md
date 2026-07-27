@@ -95,15 +95,14 @@ spec:
 |-----------|-------------|
 | `spec.inputs` | **Input channels**: defines accepted asset types and data resolution rules, supports `batch` mode |
 | `spec.params` | **Runtime parameters**: supports `STRING/INTEGER/BOOLEAN/ARRAY/OBJECT` types with defaults and validation |
-| `spec.runtime` | **Execution engine**: defines `type` (DOCKER/PROCESS/HTTP/DNS/TCP/SHELL) and engine-specific config |
-| `spec.outputs` | **Output channels**: defines asset type mapping and parser (JSON/JSONL/CSV/REGEX/XML/LINE/FILE) |
+| `spec.runtime` | **Execution engine**: defines `type` (DOCKER/HTTP/DNS/TCP/SHELL) and engine-specific config |
+| `spec.outputs` | **Output channels**: defines asset type mapping and parser (LINE/JSON/JSONL/REGEX/FILE/CSV/XML) |
 
 ### Engine Types (`runtime.type`)
 
 | Type | Description | Config Fields |
 |------|-------------|---------------|
 | `DOCKER` | Docker container execution | `docker.image`, `docker.args`, `docker.network` |
-| `PROCESS` | Local process execution | `process.binary`, `process.args` |
 | `HTTP` | HTTP probe | `http.url`, `http.method`, `http.headers` |
 | `DNS` | DNS query probe | `dns.domain`, `dns.recordType` |
 | `TCP` | TCP port probe | `tcp.host`, `tcp.port`, `tcp.data` |
@@ -177,7 +176,7 @@ spec:
 | Field | Description |
 |-------|-------------|
 | `metadata` | Metadata: `id`, `name`, `version`, `description`, `tags` |
-| `spec.trigger` | Trigger config: `type` supports `MANUAL`/`CRON`/`ASSET_LINKED` |
+| `spec.trigger` | Trigger config: `type` supports `MANUAL`/`CRON`/`AUTO`; `AUTO` means asset-event-linked auto-trigger (executes when new assets are discovered) |
 | `spec.nodes` | **DAG nodes**: each node declares its `tool`, `inputs.*.from` bindings, and `dependsOn` dependencies |
 | `spec.outputs` | Workflow output declarations: aggregates node output channels |
 | `spec.policy` | Execution policy: `errorStrategy`, `maxConcurrency`, `timeoutSeconds`, `maxRetries` |

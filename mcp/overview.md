@@ -40,6 +40,18 @@ MCP 是 Anthropic 发布的开放标准协议，用于 AI 助手与外部系统�
 | `testnet://workflows` | 工作流列表 |
 | `testnet://tools` | 工具列表 |
 
+### 5 个 MCP 提示词模板
+
+| 提示词名称 | 功能 |
+|-----------|------|
+| `asset_inventory_summary` | 资产盘点摘要 |
+| `workflow_selector` | 工作流推荐选择器 |
+| `vul_triage` | 漏洞分级与处置建议 |
+| `recon_plan` | 资产侦察计划生成 |
+| `mock_test_guide` | Mock 测试编写指导 |
+
+> 详见 [MCP 提示词模板](/mcp/prompts)。
+
 ---
 
 ## 使用场景示例
@@ -82,6 +94,7 @@ TestNet MCP 服务端点：
 | `/mcp/v1/resources` | GET | 获取资源列表 |
 | `/mcp/v1/resources/read` | GET | 读取资源内容 |
 | `/mcp/v1/prompts` | GET | 获取提示词列表 |
+| `/mcp/v1/prompts/get` | POST | 获取提示词渲染内容 |
 
 ---
 
@@ -89,4 +102,6 @@ TestNet MCP 服务端点：
 
 - [MCP 工具参考](/mcp/tools) — 每个工具的参数和示例
 - [MCP 资源](/mcp/resources) — 资源 URI 和内容说明
+- [MCP 提示词模板](/mcp/prompts) — 提示词模板参数和示例
 - [与 Claude 集成](/mcp/claude) — 配置 Claude Code 使用 TestNet MCP
+- [与 Cursor 集成](/mcp/cursor) — 配置 Cursor 使用 TestNet MCP

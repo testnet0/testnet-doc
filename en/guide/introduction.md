@@ -34,21 +34,25 @@ Create automated scan workflows via a **Visual DAG Editor**:
 ::: details Reconnaissance Tools (Recon)
 - **Subfinder** — Passive subdomain discovery
 - **Amass** — Active subdomain enumeration
+- **OneForAll** — Comprehensive subdomain collection
 - **DNS-Lookup** — Query DNS records
 - **Dnsx** — High-performance bulk DNS resolver
 - **Gau** — Retrieve historic URLs
 - **Waybackurls** — Extract URLs from Wayback Machine
+- **Katana** — Web crawler and link extraction
+- **Wappalyzer** — Web technology fingerprinting
+- **Whatweb** — Web application identifier
 :::
 
 ::: details Scanning Tools (Scan)
 - **Httpx** — HTTP probing and info gathering
+- **Httpx-Screenshot** — Web page screenshots
 - **Naabu** — Port scanning
 - **Masscan** — High-speed port scanning
 - **Nmap** — Service and version identification
-- **Katana** — Web crawler
+- **TCP-Check** — TCP port probing
 - **Dirsearch** — Directory brute-forcing
 - **Ffuf** — Web fuzzing tool
-- **TCP-Check** — TCP port probing
 :::
 
 ::: details Vulnerability Detection (Vulnerability)
@@ -56,12 +60,6 @@ Create automated scan workflows via a **Visual DAG Editor**:
 - **Sqlmap** — SQL injection detection
 - **Subzy** — Subdomain takeover detection
 - **Trufflehog** — Sensitive information leak scanner
-:::
-
-::: details Other Tools
-- **Wappalyzer** — Web technology fingerprinting
-- **Whatweb** — Web application identifier
-- **Httpx-Screenshot** — Web page screenshots
 :::
 
 ## System Architecture

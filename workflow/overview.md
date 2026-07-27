@@ -5,9 +5,6 @@ description: 工作流概述
 
 # 工作流概述
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 工作流是 TestNet 的自动化核心，通过 DAG（有向无环图）编排多个工具，实现端到端的自动化资产发现与安全扫描。
 
 ## 核心概念

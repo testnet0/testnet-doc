@@ -1,8 +1,5 @@
 # 工作流工作室与调试 (Workflow Studio)
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 TestNet 采用合约驱动（Contract-Driven）的 **vNext DAG 工作流引擎**，允许安全人员通过高度可视化的在线代码编辑器（FlowEditor）快速创建、验证与执行自动化编排任务。
 
 ---
@@ -20,9 +17,6 @@ TestNet 采用合约驱动（Contract-Driven）的 **vNext DAG 工作流引擎**
 ## 二、 在线编辑器与实时 Schema 验证
 
 工作流的核心编辑界面是由高性能代码引擎驱动的 **FlowEditor**，具备 IDE 级的使用体验与实时校验机制：
-
-::: info [图片占位：FlowEditor 在线 YAML 编写与实时 Schema 错误诊断界面展示]
-:::
 
 ### 1. 实时语法与控制流依赖诊断
 系统内置了 `VNextDslValidator` 在线校验引擎，通过 WebSocket/HTTP 即时对输入的 YAML 代码进行解析：

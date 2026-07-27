@@ -5,9 +5,6 @@ description: 任务管理概述
 
 # 任务管理概述
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 任务（Task）是工作流中每个节点执行的最小单元，代表对一个工具的一次具体调用。
 
 ## 任务与工作流的关系

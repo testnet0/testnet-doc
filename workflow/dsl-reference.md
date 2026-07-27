@@ -95,15 +95,14 @@ spec:
 |-----------|------|
 | `spec.inputs` | **输入通道**：定义工具接收的资产类型及数据解析规则，支持 `batch` 批量处理模式 |
 | `spec.params` | **运行时参数**：支持 `STRING/INTEGER/BOOLEAN/ARRAY/OBJECT` 类型，可设置默认值和校验范围 |
-| `spec.runtime` | **执行引擎**：定义 `type`（DOCKER/PROCESS/HTTP/DNS/TCP/SHELL）及各引擎特有配置 |
-| `spec.outputs` | **输出通道**：定义资产类型映射与解析器，支持 JSON/JSONL/CSV/REGEX/XML/LINE/FILE 7 种解析器 |
+| `spec.runtime` | **执行引擎**：定义 `type`（DOCKER/HTTP/DNS/TCP/SHELL）及各引擎特有配置 |
+| `spec.outputs` | **输出通道**：定义资产类型映射与解析器，支持 LINE/JSON/JSONL/REGEX/FILE/CSV/XML 7 种解析器 |
 
 ### 执行引擎类型 (`runtime.type`)
 
 | 类型 | 说明 | 配置字段 |
 |------|------|----------|
 | `DOCKER` | Docker 容器执行 | `docker.image`、`docker.args`、`docker.network` 等 |
-| `PROCESS` | 本地进程执行 | `process.binary`、`process.args` |
 | `HTTP` | HTTP 探针 | `http.url`、`http.method`、`http.headers` |
 | `DNS` | DNS 查询探针 | `dns.domain`、`dns.recordType` |
 | `TCP` | TCP 端口探测 | `tcp.host`、`tcp.port`、`tcp.data` |
@@ -177,7 +176,7 @@ spec:
 | 字段 | 说明 |
 |------|------|
 | `metadata` | 元数据：`id`、`name`、`version`、`description` |
-| `spec.trigger` | 触发配置：`type` 支持 `MANUAL`/`CRON`/`ASSET_LINKED`，`cron` 表达式（CRON 类型时） |
+| `spec.trigger` | 触发配置：`type` 支持 `MANUAL`/`CRON`/`AUTO`，`cron` 表达式（CRON 类型时）；`AUTO` 表示资产事件联动自动触发（新资产发现时自动执行） |
 | `spec.nodes` | **DAG 节点集合**：每个节点声明调用的 `tool`、输入绑定 `inputs.*.from`、依赖关系 `dependsOn` |
 | `spec.outputs` | 工作流输出声明：汇总各节点的输出通道 |
 | `spec.policy` | 执行策略：`errorStrategy`（CONTINUE/FAIL_FAST）、`maxConcurrency`、`timeoutSeconds`、`maxRetries` |

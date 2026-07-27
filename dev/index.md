@@ -12,10 +12,12 @@ description: TestNet 开发者参考中心
 | 文档 | 说明 |
 |------|------|
 | [API 接口参考](/dev/api-reference) | REST API 端点说明、请求/响应格式、认证方式 |
-| [API 端点索引](/dev/api-index) | 从后端 Controller 生成的完整接口索引 |
+| [API 端点索引](/dev/api-index) | 后端 Controller 暴露的完整接口索引 |
 | [前端开发指南](/dev/frontend-guide) | `ResourceCrudPage` 组件使用、CRUD 骨架开发 |
 | [客户端架构](/dev/architecture) | Go 扫描客户端架构设计、执行器实现、安全策略 |
 | [E2E 测试指南](/dev/testing-guide) | 端到端浏览器自动化测试手册 |
+| [Mock 测试指南](/dev/mock-guide) | Mock 数据文件规范与本地模拟执行 |
+| [DSL 验证工具](/dev/verify-guide) | testnet-client validate/test/verify 子命令用法 |
 
 ---
 
@@ -94,5 +96,12 @@ Token 通过 `POST /api/v1/auth/login` 获取，有效期 **24 小时**。
 - `POST /api/v1/auth/login`
 - `POST /api/v1/client/register`
 - `POST /api/v1/client/heartbeat`
+- `POST /api/v1/client/offline`
 - `GET /api/v1/client/task/**`
+- `GET /api/v1/client/storage/**`
+- `GET /api/v1/client/config-file/**`
+- `/api/v1/ws/**`（WebSocket 端点）
 - `GET /api/v1/license/info`
+- `GET /api/v1/license/machine-id`
+- `POST /api/v1/license/activate`
+- `GET /error`、`OPTIONS /**`

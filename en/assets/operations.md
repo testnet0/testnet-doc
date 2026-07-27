@@ -43,4 +43,4 @@ Every modification to an asset is tracked. Whether updated manually via the cons
 Clicking the **"History"** action on any asset table row slides out a detailed audit drawer:
 1. **Timestamp & Actor**: Records the user ID or the specific Task ID (`Task #XXXX`) responsible for the change;
 2. **Field Snapshot Diff**: Shows fine-grained before/after values (e.g., `status: PENDING -> ACTIVE`, or `tags: ["discovered"] -> ["discovered", "confirmed"]`);
-3. **Reversion Reference**: Provides exact prior snapshots if an administrator needs to manually restore overwritten tags or metadata.
+3. **Version Rollback**: When an accidental change overwrites important asset attributes, operators can select a target version in the history and click **"Rollback"**. The system calls `POST /api/v1/asset/history/rollback` to restore the asset to that historical snapshot (tags, ownership, status, and other fields are all restored).

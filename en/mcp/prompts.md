@@ -9,7 +9,19 @@ TestNet provides 5 built-in MCP prompt templates. AI clients (such as Claude Cod
 
 The API endpoints for prompts are defined as follows:
 - List prompts: `GET /mcp/v1/prompts`
-- Get prompt details/Use prompt: Can be accessed via standard MCP protocols.
+- Get rendered prompt content: `POST /mcp/v1/prompts/get`
+
+**Get rendered prompt content** request body example:
+```json
+{
+  "name": "asset_inventory_summary",
+  "arguments": {
+    "projectId": "proj_001"
+  }
+}
+```
+
+The response returns the rendered prompt text (`messages[0].content.text`), which can be used directly as context input for AI conversations.
 
 ---
 

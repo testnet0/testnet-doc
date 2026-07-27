@@ -5,9 +5,6 @@ description: 关注微信公众号「暗链安全」获取授权并激活系统
 
 # 授权管理
 
-> 🖼️ **[Screenshot Placeholder]**: 请在此处补充相关界面的截图 (e.g. `![界面截图](/images/screenshot.png)`)
-
-
 TestNet 生产环境需要配置有效的授权文件才能正常使用。请按照以下步骤快速获取并激活系统：
 
 ## 第一步：获取机器码

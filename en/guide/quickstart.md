@@ -11,9 +11,6 @@ This guide helps you log in and start using the TestNet platform in 5 minutes.
 
 Access the TestNet URL (default `https://your-server:3100`) and log in with the credentials provided by the administrator.
 
-::: info [Image Placeholder: Login Page]
-:::
-
 ::: info Default Credentials
 - **Username**: `admin`
 - **Password**: Automatically generated during deployment (check the deployment log or `ADMIN_INIT_PASSWORD` in the `.env` file).
