@@ -12,7 +12,7 @@ TestNet provides a high-performance streaming import/export feature that efficie
 At the top right of any asset list, click **"Import Excel"** to download the template and upload CSV/XLSX data:
 - **Required Fields**: Entity identifiers such as Primary Domain (`domainName`) or Subdomain (`subdomain`) must be populated;
 - **Smart Tag Parsing**: Multiple tags can be separated by commas `,` or semicolons `;` (e.g., `Core,High-Def CDN`), which the server automatically parses into JSON arrays;
-- **Deduplication & Merge**: If an asset key (e.g., IP:Port pair or Domain) already exists within the current `projectId`, the system automatically updates and merges the metadata instead of raising uniqueness errors.
+- **Deduplication & Merge**: If an asset key (e.g., IP:Port pair or Domain) already exists within the current `projectId`, the system automatically updates and merges the metadata.
 
 ### Filtered Export
 Clicking **"Export Excel"** exports the exact subset matching your active search terms, tag filters, and status criteria into an `.xlsx` file for offline auditing and compliance reviews.
@@ -43,4 +43,4 @@ Every modification to an asset is tracked. Whether updated manually via the cons
 Clicking the **"History"** action on any asset table row slides out a detailed audit drawer:
 1. **Timestamp & Actor**: Records the user ID or the specific Task ID (`Task #XXXX`) responsible for the change;
 2. **Field Snapshot Diff**: Shows fine-grained before/after values (e.g., `status: PENDING -> ACTIVE`, or `tags: ["discovered"] -> ["discovered", "confirmed"]`);
-3. **Version Rollback**: When an accidental change overwrites important asset attributes, operators can select a target version in the history and click **"Rollback"**. The system calls `POST /api/v1/asset/history/rollback` to restore the asset to that historical snapshot (tags, ownership, status, and other fields are all restored).
+3. **Version Rollback**: When an accidental change overwrites important asset attributes, operators can select a target version in the history and click **"Rollback"** to restore the asset to that historical snapshot (tags, ownership, status, etc.).

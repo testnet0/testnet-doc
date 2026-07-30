@@ -96,12 +96,27 @@ description: 控制台扫描节点状态查询、维护停用与离线清理
 - 检查节点是否被禁用
 - 查看服务端日志确认任务分发是否正常
 
-### Docker 工具无法执行
+### Docker 工具无法执行或镜像拉取失败
 
 ```bash
 # 检查 Docker Socket 是否挂载
 docker exec testnet-client docker ps
 ```
+
+- **国内网络镜像拉取超时**：可以在客户端配置文件 `config.yaml` 或环境变量中设置备用镜像源（Fallback Mirrors）。默认镜像拉取失败后，探针会自动尝试从备用镜像源拉取并重新打标：
+  ```yaml
+  docker:
+    enabled: true
+    socket: "/var/run/docker.sock"
+    pull_timeout: 10m
+    fallback_mirrors:
+      - "docker.m.daocloud.io"
+      - "huecker.io"
+  ```
+  或者通过环境变量设置：
+  ```bash
+  export TESTNET_DOCKER_FALLBACK_MIRRORS="docker.m.daocloud.io,huecker.io"
+  ```
 
 ---
 

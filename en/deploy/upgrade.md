@@ -1,13 +1,13 @@
 ---
 title: Upgrade Guide
-description: Upgrade Guide
+description: Step-by-step guide to upgrading TestNet to the latest version
 ---
 
 # Upgrade Guide
 
-This guide describes how to upgrade an installed TestNet to a new version.
+This document describes how to upgrade an existing TestNet installation to a newer version.
 
-## Pre-Upgrade Preparation
+## Pre-upgrade Preparation
 
 ### 1. Backup Data
 
@@ -21,9 +21,9 @@ docker exec testnet-db pg_dump \
 cp deploy/.env deploy/.env.backup
 ```
 
-### 2. Review Change Log
+### 2. Review Release Notes
 
-Before upgrading, review the Release Notes of the target version to understand:
+Before upgrading, check the target version's Release Notes for:
 - Breaking changes
 - New features
 - Database schema changes
@@ -38,7 +38,7 @@ docker images | grep testnet
 
 ## Upgrade Steps
 
-### Upgrade Using Deployment Script
+### Upgrade via Script
 
 ```bash
 cd deploy
@@ -47,8 +47,8 @@ cd deploy
 
 The `update` command will:
 1. Pull the latest Docker images
-2. Stop existing services
-3. Restart services (Flyway automatically executes database migrations on server startup)
+2. Stop running services
+3. Restart services (database migrations run automatically on startup via Flyway)
 
 ### Manual Upgrade
 
@@ -62,88 +62,23 @@ docker compose -f deploy/docker-compose.yml up -d
 
 ---
 
-## Automatic Database Migration
+## Client Node Upgrade
 
-TestNet server uses **Flyway** to manage database version upgrades. Each time the service starts, Flyway automatically checks and executes new Migration scripts:
-
-```
-Service starts
-  ↓
-Flyway checks current version (V1.0.12)
-  ↓
-Finds new Migrations (V1.0.13, V1.0.14)
-  ↓
-Automatically executes Migrations
-  ↓
-Updates version records
-  ↓
-Service starts normally
-```
-
-View migration logs:
+If a new version of the scanning node (`testnet-client`) is released, update it individually:
 
 ```bash
-docker compose -f deploy/docker-compose.yml logs testnet-server | grep -i flyway
-```
-
----
-
-## Scanning Node Upgrade
-
-If the scanning node (testnet-client) has a new version, it needs to be updated separately:
-
-```bash
-# Pull new client image
+# Pull latest client image
 docker pull testnet/client:latest
 
 # Restart client container
 docker stop testnet-client
 docker rm testnet-client
-docker run -d ...  # Use the original startup command
+docker run -d ...  # Use original startup command
 ```
 
----
-
-## Post-Upgrade Verification
-
-1. Visit `https://your-server:3100` to confirm the frontend is working
-2. Execute a test workflow to verify core functionality is working
-3. Check the "**Scanning Nodes**" page to confirm nodes are online
-4. View service logs to confirm no abnormal errors
-
----
-
-## Rollback
-
-If issues occur after upgrading, you can rollback to the previous version:
+### Services Keep Restarting After Upgrade
 
 ```bash
-# View available old version images
-docker images testnet/server
-
-# Start with a specific old version
-docker compose -f deploy/docker-compose.yml up -d --no-pull
-```
-
-::: warning
-If database Migrations have already been executed, rolling back the service version may cause database incompatibility issues. Please make a complete backup before upgrading.
-:::
-
----
-
-## Common Upgrade Issues
-
-### Service Keeps Restarting After Startup
-
-```bash
-# View error logs
+# Inspect error logs
 docker logs testnet-server
-
-# Common cause: database Migration failure
-# Check Flyway logs
-docker logs testnet-server | grep -i "flyway\|migration"
 ```
-
-### Frontend Version Mismatch
-
-Clear browser cache and refresh the page (force refresh: `Ctrl+Shift+R`).

@@ -11,36 +11,26 @@ description: 包含配置要求、服务端与节点安装、机器码授权激�
 
 根据您需要管理的网络资产数量和并发扫描任务量，平台推荐以下服务器配置：
 
-| 部署角色 | 最低配置 (小型团队测试) | 推荐配置 (生产环境 / 万级资产) | 大型集群 (大型企业 / 持续扫描) |
+| 部署角色 | 最低配置 (小型团队) | 推荐配置 (生产环境 / 万级资产) | 大型集群 (大型企业) |
 | :--- | :--- | :--- | :--- |
 | **服务端主节点** *(Web、主程序与数据库)* | **2 核 CPU** / **4 GB 内存**<br>50 GB SSD 存储 | **4 核 CPU** / **8 GB 内存**<br>100 GB SSD 存储 | **8 核以上 CPU** / **16 GB 以上 内存**<br>500 GB 以上 NVMe SSD 存储 |
 | **扫描探针节点** *(Client 客户端)* | **1 核 CPU** / **2 GB 内存**<br>20 GB 剩余磁盘 | **2 核 CPU** / **4 GB 内存**<br>50 GB 剩余磁盘 | 根据任务量按需增加分布式主机数量 |
-
-> [!TIP] 💡 扫描探针配置建议与系统句柄调优
-> - **资源分配**：如果需要运行 `Subfinder`、`Amass` 等信息收集工具，它们对 **CPU 与内存** 消耗较大，建议为其分配较多资源。
-> - **网络与并发**：如果主要运行 `Masscan`、`Nmap` 等高并发全端口扫描工具，建议将探针部署在**网络带宽大**且**放开了连接数限制**的主机上。
-> - **句柄调优 (ulimit)**：在高并发探测场景下，请调高系统与 Docker 句柄数限制：
->   ```bash
->   # 在宿主机上提高当前会话与系统的最大文件句柄数
->   ulimit -n 65535
->   echo "* soft nofile 65535" | sudo tee -a /etc/security/limits.conf
->   echo "* hard nofile 65535" | sudo tee -a /etc/security/limits.conf
->   ```
 
 ### 2. 软件运行环境要求
 
 * **操作系统**：支持主流 Linux 发行版（推荐使用 **Ubuntu 22.04 LTS**、**Rocky Linux 8+** 或 **Debian 11+**）。
 * **软件依赖**：系统需要预先安装好 `Docker 20.10+` 和 `Docker Compose v2.0+`。
-* **环境调优建议**：
-  * **Docker 局域网 DNS 解析**：若探针容器内无法正常解析外网或阿里云镜像，建议在 `/etc/docker/daemon.json` 中添加 `"dns": ["223.5.5.5", "114.114.114.114", "8.8.8.8"]`。
-  * **SELinux 策略**：CentOS / RHEL 系统请确认 SELinux 状态，挂载 `/var/run/docker.sock` 时避免因为 SELinux 导致 `Permission denied` 报错。
-* **网络与防火墙**：
-  * 服务端所在的主机需要开放 HTTPS `3100` 端口，供浏览器访问管理后台。
-  * 如果要在其他独立服务器上部署扫描探针，需要确保这些探针机器能访问到服务端主机的 `8081` 端口。
-
----
-
-## 服务端一键安装 (Docker Compose)
+* **Docker 镜像与国内网络环境调优**：
+  * **官方镜像拉取与加速**：平台大部分安全工具（如 Subfinder、Naabu、Nuclei 等）以容器方式运行。在特殊网络环境下，标准 Docker Hub 镜像可能拉取缓慢或失败。推荐配置 Docker Daemon 镜像加速器（编辑 `/etc/docker/daemon.json`）：
+    ```json
+    {
+      "registry-mirrors": [
+        "https://your-docker-mirror.example.com"
+      ]
+    }
+    ```
+    配置后执行 `sudo systemctl daemon-reload && sudo systemctl restart docker` 生效。
+## 一键安装 (Docker Compose)
 
 ### 1. 第一步：运行安装
 
@@ -50,8 +40,8 @@ description: 包含配置要求、服务端与节点安装、机器码授权激�
 curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | bash
 ```
 
-安装脚本会自动帮您完成以下准备工作：
-1. 生成随机且高强度的数据库密码、加密密钥等，并写入到 `.env` 配置文件中；
+安装脚本会自动帮您完成以下工作：
+1. 生成随机的数据库密码、加密密钥等，并写入到 `.env` 配置文件中；
 2. 自动在 `certs/` 目录下创建自签名 SSL 证书（生产环境建议后续替换为您自己的正式证书）；
 3. 从官方镜像仓库拉取各模块所需的 Docker 镜像；
 4. 依次启动数据库、Redis 以及主程序服务，并自动导入初始数据表结构。
@@ -65,7 +55,7 @@ curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | 
 
 访问地址: https://your-server-ip:3100
 管理员账号: admin
-管理员密码: Abc12345XyZ   ← 请及时截屏并妥善保存此系统生成的随机初始密码！
+管理员密码: Abc12345XyZ   ← 请妥善保存生成的随机初始密码！
 ```
 
 在浏览器中打开该地址，输入上述账号密码即可登录系统后台。
@@ -77,9 +67,9 @@ curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | 
 
 ---
 
-## 扫描探针 (集群节点) 部署
+## 分布式部署
 
-系统默认会在服务端主机上启动一个内置的扫描探针。如果您想在多台不同的服务器上分布式运行扫描任务，可以将其他探针节点连接到主服务器，配置方法如下：
+系统默认会在服务端主机上启动一个内置的客户端。如果您想在多台不同的服务器上分布式运行扫描任务，可以将其他客户端节点连接到主服务器，配置方法如下：
 
 ### 1. 第一步：获取连接密码
 其他探针节点连接主服务器时需要密码。请在主服务器的 `deploy/.env` 文件中找到并复制连接密码（CLIENT_SECRET）：
@@ -92,14 +82,13 @@ grep TESTNET_CLIENT_SECRET deploy/.env
 #### 部署方式一：通过 Docker 运行 (推荐)
 在任意已安装 Docker 的独立主机上执行以下命令。这需要挂载 `docker.sock`，以便探针程序能够调用 Docker 来运行各种容器化的扫描工具：
 
-**选择 A：走统一的 3100 端口（HTTPS，推荐，只需暴露一个端口）**
 如果服务端使用的是自签名证书，请添加 TLS 忽略证书校验的环境变量：
 ```bash
 docker run -d \
   --name testnet-client \
   --restart always \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /opt/testnet/client-data:/opt/testnet/client-data \
+  -v ./client-data:/opt/testnet/client-data \
   -e TESTNET_SERVER_URL=https://your-server-ip:3100 \
   -e TESTNET_SERVER_TLS_ENABLED=true \
   -e TESTNET_SERVER_TLS_INSECURE_SKIP_VERIFY=true \
@@ -108,23 +97,8 @@ docker run -d \
   testnet/client:latest
 ```
 
-**选择 B：直接连接后端 8081 端口（HTTP，需要对外开放 8081 端口）**
-```bash
-docker run -d \
-  --name testnet-client \
-  --restart always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v /opt/testnet/client-data:/opt/testnet/client-data \
-  -e TESTNET_SERVER_URL=http://your-server-ip:8081 \
-  -e TESTNET_CLIENT_SECRET=<从服务端获取的密码> \
-  -e TESTNET_NODE_NAME=node-guangzhou-01 \
-  testnet/client:latest
-```
-
 #### 部署方式二：直接运行二进制程序
-如果目标服务器没有安装 Docker，也可以在目标主机下载并直接运行单文件客户端程序（此模式只能执行原生系统命令或进行常规的网络端口探测）：
 
-**选择 A：走统一的 3100 端口（HTTPS，需在配置文件中配置忽略证书，或启动时覆盖）**
 可以先生成配置文件 `config.yaml` 或直接通过环境配置：
 ```bash
 export TESTNET_SERVER_URL=https://your-server-ip:3100
@@ -137,23 +111,13 @@ chmod +x testnet-client
 ./testnet-client -concurrency 8
 ```
 
-**选择 B：直接连接后端 8081 端口（HTTP）**
-```bash
-chmod +x testnet-client
-./testnet-client \
-  -server http://your-server-ip:8081 \
-  -secret <从服务端获取的密码> \
-  -name node-shanghai-native \
-  -concurrency 8
-```
-
 部署完成后，登录管理后台，在 **「扫描节点」->「节点池管理」** 中就能实时查看到新加入的节点，并能查看其在线状态、并发数限制等信息。
 
 ---
 
-## 扫描探针环境变量参考
+## 客户端节点环境变量参考
 
-扫描探针支持通过 `TESTNET_` 前缀的环境变量覆盖 `config.yaml` 配置。完整变量列表如下：
+客户端节点支持通过 `TESTNET_` 前缀的环境变量覆盖 `config.yaml` 配置。完整变量列表如下：
 
 | 环境变量 | 类型 | 说明 |
 |---------|------|------|
@@ -168,6 +132,7 @@ chmod +x testnet-client
 | `TESTNET_POLL_INTERVAL` | duration | 长轮询间隔（如 `5s`） |
 | `TESTNET_HEARTBEAT_INTERVAL` | duration | 心跳上报间隔（如 `15s`） |
 | `TESTNET_DOCKER_ENABLED` | bool | 是否启用 Docker 执行器（`true`/`1`） |
+| `TESTNET_DOCKER_FALLBACK_MIRRORS` | string | 备用 Docker 镜像源列表（逗号分隔，如 `docker.m.daocloud.io,huecker.io`） |
 | `TESTNET_SERVER_TIMEOUT` | duration | 服务端请求超时（如 `30s`） |
 | `TESTNET_WORK_DIR` | string | 任务工作目录 |
 | `TESTNET_CACHE_DIR` | string | 缓存目录 |
