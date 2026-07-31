@@ -43,11 +43,7 @@ Run the following command on your target server to automatically detect the fast
 curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | bash
 ```
 
-The installer will automatically:
-1. Generate randomized database passwords and encryption secrets in `.env`;
-2. Create self-signed SSL certificates in `certs/`;
-3. Pull required Docker images from official repositories;
-4. Launch database, Redis, and main server components, then import initial database schemas.
+The installation script automatically generates random passwords, creates self-signed certificates, pulls images, and starts services.
 
 ### 2. Accessing the Dashboard
 

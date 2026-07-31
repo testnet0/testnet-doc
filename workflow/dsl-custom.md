@@ -102,10 +102,7 @@ spec:
 python generate_registry.py
 ```
 
-该脚本将自动执行以下操作：
-1. **语法扫描**：递归扫描 `tools/` 和 `workflows/` 下的所有 `.yaml` 文件。
-2. **校验和计算**：计算每个 YAML 文件的 SHA-256 校验和，用于客户端完整性校验。
-3. **生成 `index.json`**：将所有工具和工作流的元数据（ID、名称、版本、描述、更新时间）汇聚到全局的 `index.json` 和子目录索引中。
+脚本会扫描 DSL 文件并生成 `index.json` 索引与校验和。
 
 ---
 

@@ -37,10 +37,6 @@ TestNet license files include an expiration date. After expiration, the system e
 - **Renal Process**: Before expiration, repeat Steps 1–3 above to obtain and upload a new license file. The update takes effect immediately without downtime.
 - **Expiration Reminders**: The system sends notifications via the Notification Center 7 days before license expiration.
 
-::: tip Test Environments
-In test environments, license verification can be disabled by setting `testnet.license.enabled=false` for automated testing.
-:::
-
 ---
 
 ## Docker Deployment & Machine ID Stability

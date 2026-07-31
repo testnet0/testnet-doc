@@ -5,7 +5,7 @@ description: Cron scheduling, event-driven auto-triggers and run tracking
 
 # Workflow Triggers & Run History
 
-Beyond manual execution inside FlowEditor, TestNet provides automated **Cron Scheduling**, **Event-Driven Asset Auto-Triggers**, and comprehensive **Run History Tracking** for 24/7 autonomous security posture management.
+Beyond manual execution, TestNet supports **Cron Scheduling**, **Asset Event Triggers**, and **Run History Tracking**.
 
 ---
 
@@ -29,13 +29,13 @@ spec:
       assetTypes: [DOMAIN]
 ```
 - **Supported Cron Syntax**: Seconds, Minutes, Hours, Day of Month, Month, Day of Week, Year;
-- **Concurrency Protection**: If the previous cron iteration is still actively running when the next schedule triggers, TestNet defaults to a `SKIP` policy to prevent worker exhaustion and infinite task queuing.
+- **Concurrency Protection**: If the previous cron iteration is still actively running when the next schedule triggers, the system defaults to skipping the current cycle to prevent task buildup
 
 ---
 
-## 2. Event-Driven Auto-Triggers (`WorkflowAutoTriggerListener`)
+## 2. Event-Driven Auto-Triggers
 
-TestNet's event-driven architecture automatically triggers downstream scanning pipelines whenever high-value changes occur inside the asset graph:
+TestNet supports automatic triggering based on asset events. When the platform detects new high-value asset changes:
 
 ### Common Auto-Trigger Use Cases
 - **New Subdomain Discovered (`NEW_ASSET`)**: The moment a new subdomain or IP is added to the graph, TestNet instantly triggers Web port scanning and fingerprint identification;
@@ -68,5 +68,5 @@ Navigate to **"Workflow Management" -> "Run History"** for full visibility acros
 ### Step-by-Step Task Breakdown
 Clicking any workflow run row expands the complete DAG task tree:
 - **Phase Duration**: Pinpoints bottlenecks by displaying exact runtimes per step (e.g., `subdomain-enum` took 45s, `vuln-scan` took 12m);
-- **Live Terminal Logs**: For active tasks, one click opens the `LogViewer` to display real-time ANSI-colored streaming logs straight from the remote Go scanning node;
+- **Live Terminal Logs**: For active tasks, click to view real-time colored terminal logs;
 - **Step Retry & Intervention**: If a node disconnects due to network jitter, administrators can retry the individual failed step without re-running the entire workflow from scratch.

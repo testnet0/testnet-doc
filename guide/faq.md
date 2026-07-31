@@ -139,10 +139,6 @@ cd deploy
 library initialization failed - unable to allocate file descriptor table - out of memory
 ```
 
-**原因分析**：
-
-由于 Docker 默认的 `ulimit` 文件描述符上限配置较低或系统分配机制限制，高并发扫描时句柄数耗尽。
-
 **解决方案**：
 
 1. 编辑系统的 `docker.service` 配置文件：
@@ -193,10 +189,6 @@ Temporary failure resolving 'mirrors.aliyun.com'
 **现象描述**：
 
 探针节点挂载 `/var/run/docker.sock` 或本地数据卷时报 `Permission denied`，导致无法调用 Docker 启动扫描工具容器。
-
-**原因分析**：
-
-CentOS / RHEL 默认开启了 SELinux 安全策略限制。
 
 **解决方案**：
 

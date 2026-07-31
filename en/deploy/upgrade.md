@@ -45,10 +45,7 @@ cd deploy
 ./testnet.sh update
 ```
 
-The `update` command will:
-1. Pull the latest Docker images
-2. Stop running services
-3. Restart services (database migrations run automatically on startup via Flyway)
+The `update` command pulls the latest images and restarts services. Database migrations run automatically.
 
 ### Manual Upgrade
 
@@ -88,8 +85,8 @@ If the server container keeps restarting after upgrade, it's usually caused by a
 # View recent server logs
 docker logs testnet-server --tail 100
 
-# Check Flyway migration logs
-docker logs testnet-server 2>&1 | grep -i "flyway\|migration\|error"
+# Check database migration logs
+docker logs testnet-server 2>&1 | grep -i "migration\|error"
 ```
 
 **2. Common Causes & Solutions**

@@ -1,54 +1,54 @@
 ---
 title: Asset Operations & Management
-description: Batch import/export, multi-scope actions and audit tracking
+description: Batch import/export, batch actions and change history
 ---
 
-# Asset Operations & Management Practices
+# Asset Operations & Management
 
-TestNet's asset management module provides high-efficiency operational tools designed for massive asset inventories, including **Batch Import/Export (Excel/CSV)**, **Multi-scope Batch Actions & Tagging**, and **Full Lifecycle Audit Tracking (History AOP)**.
+TestNet asset management supports batch import/export, batch operations, and change history auditing.
 
 ---
 
 ## 1. Batch Import & Export
 
-TestNet provides a high-performance streaming import/export feature that efficiently handles massive asset records with minimal memory consumption.
+### Import
 
-### Import Workflow & Templates
-At the top right of any asset list, click **"Import Excel"** to download the template and upload CSV/XLSX data:
-- **Required Fields**: Entity identifiers such as Primary Domain (`domainName`) or Subdomain (`subdomain`) must be populated;
-- **Smart Tag Parsing**: Multiple tags can be separated by commas `,` or semicolons `;` (e.g., `Core,High-Def CDN`), which the server automatically parses into JSON arrays;
-- **Deduplication & Merge**: If an asset key (e.g., IP:Port pair or Domain) already exists within the current `projectId`, the system automatically updates and merges the metadata.
+At the top of any asset list, click **"Import Excel"** to download the template and upload data:
+- **Required Fields**: Primary domain, subdomain, and other key fields are required;
+- **Tag Format**: Multiple tags can be separated by commas `,` or semicolons `;` (e.g., `Core,High-Def CDN`);
+- **Deduplication**: Existing assets are automatically merged and updated.
 
-### Filtered Export
-Clicking **"Export Excel"** exports the exact subset matching your active search terms, tag filters, and status criteria into an `.xlsx` file for offline auditing and compliance reviews.
+### Export
 
----
-
-## 2. Batch Actions & Progress Tracking
-
-When modifying hundreds or thousands of assets simultaneously (e.g., adjusting tags, changing states, or migrating project ownership), use the **Batch Actions Toolbar (BatchActions)**:
-
-### Selection Scopes
-Using the table checkboxes, administrators can target:
-- **Current Page**: Modify only the currently visible items;
-- **Entire Query Result**: Apply changes to all items matching the active query (e.g., all 5,000 assets carrying a specific tag across all pages).
-
-### Real-Time Progress Monitoring
-Upon submitting batch tagging or ownership migrations, a **Batch Progress Modal (BatchActionModal)** appears. The system processes the batch asynchronously while updating progress in real time:
-- **Metrics Display**: Tracks `Total / Succeeded / Skipped` items in real time;
-- **Rule Triggering**: After batch creation, background tasks automatically re-evaluate [Asset Rules](/en/assets/rules) to apply automated tags.
+Click **"Export Excel"** to export the current filtered results (including search criteria, tags, and status) as an `.xlsx` file.
 
 ---
 
-## 3. Change History & Audit Trail
+## 2. Batch Actions
 
-Every modification to an asset is tracked. Whether updated manually via the console or reported by a scanning node, the system automatically records the event log, creating a complete audit trail.
+When you need to modify many assets at once (e.g., adjust tags, change status, or migrate ownership), use batch operations:
 
-### Inspecting Change Logs (AssetHistoryDrawer)
-Clicking the **"History"** action on any asset table row slides out a detailed audit drawer:
-1. **Timestamp & Actor**: Records the user ID or the specific Task ID (`Task #XXXX`) responsible for the change;
-2. **Field Snapshot Diff**: Shows fine-grained before/after values (e.g., `status: PENDING -> ACTIVE`, or `tags: ["discovered"] -> ["discovered", "confirmed"]`);
-3. **Version Rollback**: When an accidental change overwrites important asset attributes, operators can select a target version in the history and click **"Rollback"** to restore the asset to that historical snapshot (tags, ownership, status, etc.).
+### Selection Scope
+
+- **Current Page**: Operate on checked items only;
+- **Entire Result Set**: Apply to all items matching the current filter.
+
+### Progress Tracking
+
+After submitting a batch operation, the interface displays real-time progress including total, succeeded, and skipped counts. After batch additions, the system automatically applies [Asset Rules](/en/assets/rules) for tagging.
+
+---
+
+## 3. Change History
+
+The system tracks all asset modifications — whether manual or from scanning tasks — recording a complete change log.
+
+### Inspecting Change Logs
+
+Click **"History"** on any asset row to open the change log drawer:
+1. **Timestamp & Actor**: Records the user or task ID that made the change;
+2. **Before/After Diff**: Shows field changes (e.g., `status: PENDING -> ACTIVE`);
+3. **Version Rollback**: Select a target version and click **"Rollback"** to restore the asset to that state.
 
 ---
 

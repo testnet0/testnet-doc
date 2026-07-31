@@ -5,7 +5,7 @@ description: 8 core asset models and cascading topology relationships
 
 # Asset Graph Models
 
-TestNet's asset management core is built upon a distributed **Asset Graph** that decomposes enterprise attack surfaces into **8 core asset models**. Each asset is stored independently and connected through cascading topology relationships (e.g., `Company -> Domain -> Subdomain -> IP -> Port -> Web -> API/Vulnerability`).
+TestNet categorizes enterprise assets into **8 core models**. Each asset is connected through cascading relationships (e.g., `Company -> Domain -> Subdomain -> IP -> Port -> Web -> API/Vulnerability`) to form a complete attack surface chain.
 
 ---
 
@@ -28,11 +28,11 @@ The core business fields, automatic linkage rules, and risk indicators for each 
 
 ## 2. Common Core Entity Attributes
 
-In addition to module-specific properties, all 8 asset models inherit TestNet's standard entity schema (`BaseEntity`):
+All 8 asset models share the following common properties:
 
 ```json
 {
-  "id": "64-bit Snowflake Unique ID (String)",
+  "id": "Unique identifier (String)",
   "projectId": "Context ID of the parent Project/Department",
   "tags": ["Core Business", "Production", "High-Def CDN"],
   "status": "ACTIVE / ENABLE / DISABLED / PENDING",
@@ -50,7 +50,7 @@ In addition to module-specific properties, all 8 asset models inherit TestNet's 
 
 ## 3. Automatic Upstream/Downstream Resolution
 
-TestNet features a robust cascade binding resolution engine (`TargetResolverEngine`):
+TestNet supports asset cascading resolution:
 1. When a scanning task takes a **Company** or **Primary Domain** as target, the engine automatically expands the graph downwards;
 2. It retrieves all active subdomains, IPs, and open Web URLs under that hierarchy in one pass—no manual page switching or pagination clicks required;
-3. Any node changes can be visualized in real-time within the [Asset Topology Graph (/en/assets/graph)](/en/assets/graph) as an ECharts force-directed layout, where nodes with `CRITICAL/HIGH` vulnerabilities glow red for immediate awareness.
+3. Any node changes can be visualized in real-time within the [Asset Topology Graph (/en/assets/graph)](/en/assets/graph) as a visual graph, where nodes with `CRITICAL/HIGH` vulnerabilities glow red for immediate awareness.

@@ -102,10 +102,7 @@ Run the following command in the root of the `testnet-registry` folder:
 python generate_registry.py
 ```
 
-The script will automatically perform:
-1. **Syntax Scanning**: Recursively scans all `.yaml` files under `tools/` and `workflows/`.
-2. **Checksum Calculation**: Computes the SHA-256 checksum of each YAML file for integrity verification by client nodes.
-3. **Generate `index.json`**: Consolidates metadata (ID, name, version, description, updated time) of all tools and workflows into a global `index.json` and sub-index files.
+The script scans DSL files and generates the index.json index and checksums.
 
 ---
 

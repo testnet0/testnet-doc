@@ -32,7 +32,7 @@ Click the 🔔 bell icon in the top navigation bar:
 
 ### System Alerts (Real-time WebSocket Push)
 
-High-priority alerts (node offline, task circuit breaker, etc.) are pushed in real time via WebSocket `/topic/system-alert` and appear as pop-up notices in the top-right corner.
+High-priority alerts (node offline, task circuit breaker, etc.) appear as real-time pop-up notices in the top-right corner.
 
 ---
 

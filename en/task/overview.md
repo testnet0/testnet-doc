@@ -65,7 +65,7 @@ Go to "**Task Management**" to view all tasks:
 
 ### Input Parameters
 
-View the actual input assets and parameters received by the tool (rendered ExecutionSpec).
+View the actual input assets and parameters received by the tool.
 
 ### Output Results
 

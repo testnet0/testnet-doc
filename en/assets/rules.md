@@ -43,7 +43,7 @@ Rules support the following 7 match algorithms when comparing field values:
 | **PREFIX** | Prefix match | `dev-` |
 | **SUFFIX** / **DOMAIN_SUFFIX** | Suffix/domain suffix match (automatically adapts leading `.`) | `.gov.cn` / `baidu.com` |
 | **CONTAINS** | Contains substring match | `staging` |
-| **REGEX** | Complex Java regex match | `^test-[0-9]+\.domain\.com$` |
+| **REGEX** | Regular expression matching | `^test-[0-9]+\.domain\.com$` |
 | **CIDR** | CIDR network range validation (only used for IP asset related field matching) | `192.168.1.0/24` / `10.0.0.0/8` |
 
 ### Rule Configuration Best Practices
@@ -89,19 +89,19 @@ In the **"Custom Fields"** view, users can declare custom attributes for any of 
 
 ### Integration Behavior
 * **Dynamic Form Rendering**: Once a custom field definition is saved and active (`ACTIVE`), edit modals for the corresponding asset dynamically append fields at the bottom.
-* **List Views**: Custom columns are dynamically added to lists using `_cf_fieldName` as the key, supporting list sorting and advanced query filtering.
+* **List Views**: Custom fields are displayed in the asset list and detail views, supporting sorting and advanced filtering.
 
 ---
 
 ## 4. History Cleanup
 
 ### Function Background
-Frequent scanning creates large volumes of asset change log rows (`testnet_asset_change_log`). To prevent database bloat, Admins can manage log lifecycles.
+Frequent scanning creates large volumes of asset change logs. To prevent historical data from consuming excessive storage, Admins can manage log lifecycles.
 
 ### Parameters
 Control retention via **"History Cleanup"**:
-- **Enabled (enabled)**: When active, a periodic background cleanup task runs;
-- **Retention Days (retentionDays)**: Maximum logs retention (default: `90` days; older rows are permanently purged);
+- **Enabled (enabled)**: When active, the system automatically cleans up periodically;
+- **Retention Days (retentionDays)**: Maximum logs retention (default: `90` days; older records are automatically cleaned up);
 - **Cleanup Hour (cleanupHour)**: Scheduled hour for the task (defaults to `3` AM daily).
 
 ---

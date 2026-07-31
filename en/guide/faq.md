@@ -139,10 +139,6 @@ When running high-concurrency scan tasks or starting Docker containers on Linux 
 library initialization failed - unable to allocate file descriptor table - out of memory
 ```
 
-**Root Cause**:
-
-The default `ulimit` file descriptor ceiling in Docker is low or system allocation limits restrict descriptor table expansion during concurrent port scanning.
-
 **Solution**:
 
 1. Edit the system's `docker.service` configuration file:
@@ -191,10 +187,6 @@ Temporary failure resolving 'mirrors.aliyun.com'
 **Symptom**:
 
 Probe nodes fail to launch scanner containers when mounting `/var/run/docker.sock` or local data volumes, throwing `Permission denied`.
-
-**Root Cause**:
-
-SELinux security enforcement is enabled on CentOS / RHEL hosts.
 
 **Solution**:
 

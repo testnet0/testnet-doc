@@ -23,8 +23,8 @@ This version contains breaking changes. Please make a full backup of your data b
 - **vNext DSL Engine**: Upgraded tool and workflow DSL specifications (`kind: Tool/Workflow`). The DAG control and data flows are defined via `dependsOn` and `inputs.*.from`, featuring real-time JSON Schema validation.
 - **Asset Graph Chart**: Added a cross-type asset topology mapping page (powered by ECharts force-directed layout). View asset relationships in a clean, visual graph. Endpoint: `GET /api/v1/asset/graph`.
 - **Tool Store (Registry)**: One-click installation and updates of scanning tools and workflows from a remote DSL repository. Includes 22 built-in tools and 8 pre-configured workflows.
-- **Resilience & Circuit Breaking**: Integrated Resilience4j 2.2.0. Workflows and tasks now feature automatic circuit breaking and exponential backoff retry policies. System alerts are broadcasted via WebSocket at `/topic/system-alert`.
-- **Remote Config Synchronization**: Scan nodes automatically synchronize configuration files from the server with SHA-256 integrity checks and symlink version management.
+- **Resilience & Circuit Breaking**: Workflows and tasks now feature automatic circuit breaking and exponential backoff retry policies. System alerts are pushed in real time.
+- **Remote Config Synchronization**: Scan nodes automatically synchronize configuration files from the server.
 
 ### ⚡ Architecture Upgrades
 - **Database Upgrade**: Fully migrated the primary database to PostgreSQL 16, significantly boosting data processing performance and concurrent execution stability.
@@ -85,12 +85,6 @@ This update refactored the distributed communication mechanism. Deployed distrib
 
 ### ⚡ Performance Optimizations
 - Optimized million-level asset Excel import/export speed, reducing memory consumption by 40%
-- Major refactoring of the server-side underlying architecture, upgrading Fastjson to v2.0.43
-- Upgraded runtime environment to JDK 17 (compatible with JDK 8 and JDK 21)
-- Upgraded Knife4j to springdoc-openapi based on the openapi3 standard
-- Replaced built-in container from tomcat to the lighter and higher-concurrency undertow
-- Upgraded Spring Cloud to 2021.0.8 and Spring Cloud Alibaba to 2021.0.6.2
-- Upgraded reporting component Jimureport to the latest v1.9.5
 
 ---
 
@@ -107,7 +101,7 @@ This version removes the external Elasticsearch dependency and refactors the dat
 
 ### ⚡ Performance Optimizations
 - **Removed Elasticsearch**: Optimized native SQL queries, removed ES component, overall system memory usage reduced by over 30%
-- **Underlying Communication Upgrade**: Replaced Redis publish/subscribe with gRPC high-performance RPC framework for fast synchronization between server and distributed clients
+- **Underlying Communication Upgrade**: Improved synchronization performance between server and distributed clients
 - **Asset Search Performance**: Advanced query and list search response speed improved by 50%
 - **Result Reporting Retry**: When scanning nodes cannot report results due to network fluctuations, supports local queue temporary storage and automatic exponential backoff retry
 - **High Availability Improvement**: Resolved the issue where Go client hangs or goes offline due to Docker container execution exceptions

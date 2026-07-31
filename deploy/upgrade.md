@@ -45,10 +45,7 @@ cd deploy
 ./testnet.sh update
 ```
 
-`update` 命令会：
-1. 拉取最新版本的 Docker 镜像
-2. 停止现有服务
-3. 重新启动服务（服务端启动时 Flyway 自动执行数据库迁移）
+`update` 命令会拉取最新镜像并重启服务，数据库迁移会自动执行。
 
 ### 手动升级
 
@@ -88,15 +85,15 @@ docker run -d ...  # 使用原来的启动命令
 # 查看服务端最近日志
 docker logs testnet-server --tail 100
 
-# 查看 Flyway 迁移相关日志
-docker logs testnet-server 2>&1 | grep -i "flyway\|migration\|error"
+# 查看数据库迁移相关日志
+docker logs testnet-server 2>&1 | grep -i "migration\|error"
 ```
 
 **2. 常见原因与解决方案**
 
 | 原因 | 排查与解决 |
 |------|------------|
-| **数据库迁移失败** | Flyway 报错时确认 `testnet-db` 正常运行；必要时从备份恢复（参考[数据备份与恢复](/deploy/backup)） |
+| **数据库迁移失败** | 确认 `testnet-db` 正常运行；必要时从备份恢复（参考[数据备份与恢复](/deploy/backup)） |
 | **.env 缺失新变量** | 新版本可能引入新的环境变量，对比 `.env` 与发布说明，补全缺失项后重启 |
 | **数据库连接失败** | 确认数据库健康：`docker exec testnet-db pg_isready`；检查 `SPRING_DATASOURCE_URL` 配置 |
 | **端口被占用** | 检查 8081 端口：`lsof -i:8081`，释放占用后重启 |

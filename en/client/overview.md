@@ -5,7 +5,7 @@ description: Console management for scanning probe pools, monitoring, and mainte
 
 # Scanning Node Pool Management
 
-Scanning probes (`testnet-client`) form the execution layer of TestNet's distributed engine. This page explains how to monitor live status, temporarily disable probes for maintenance, and clean up offline nodes from the web dashboard.
+Scanning nodes execute scanning tasks. This page covers daily operations and status monitoring from the console.
 
 > [!TIP] 🚀 Deploying & Scaling Scanning Probes
 > If you need to install new probe instances, set up multi-container clusters using Docker Compose, or review sizing recommendations for specialized workloads, refer to: **[Distributed Deployment](/en/deploy/overview#distributed-deployment)**.
@@ -19,11 +19,11 @@ Navigate to **Scanning Nodes -> Node Management** in the left sidebar to view ac
 | Field | Description | Example |
 | :--- | :--- | :--- |
 | **Node Name** | Friendly name configured via `TESTNET_NODE_NAME` | `node-general-01` |
-| **Node ID** | Unique system-assigned ID generated upon registration | `client_8f92a0e1` |
-| **Status** | Current working state indicating readiness for task dispatch | 🟢 Online / 🔴 Offline / ⚫ Disabled |
-| **Last Heartbeat** | Relative timestamp of the latest polling heartbeat | `12 seconds ago` |
-| **Active Tasks** | Number of tasks currently running on this probe | `3 / 5` |
-| **System Info** | Host OS, kernel architecture, and available RAM | `Linux x86_64 / 16GB` |
+| **Node ID** | Unique identifier generated upon registration | `client_8f92a0e1` |
+| **Status** | Whether the node can receive tasks | 🟢 Online / 🔴 Offline / ⚫ Disabled |
+| **Last Heartbeat** | Time of the last heartbeat | `12 seconds ago` |
+| **Active Tasks** | Number of tasks currently running | `3 / 5` |
+| **System Info** | Node OS, kernel, and memory info | `Linux x86_64 / 16GB` |
 
 ---
 
@@ -102,7 +102,7 @@ After deletion, restarting the client will auto-register as a new node.
 docker exec testnet-client docker ps
 ```
 
-- **Image pull timeouts on restricted networks**: You can configure fallback mirrors in the client config file `config.yaml` or via environment variables. When the default image pull fails, the probe automatically retries from fallback mirrors and re-tags the image:
+- **Image pull timeouts on restricted networks**: You can configure fallback mirrors in the client config file `config.yaml` or via environment variables. When the default image pull fails, the probe automatically retries from fallback mirrors:
   ```yaml
   docker:
     enabled: true

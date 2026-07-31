@@ -1,58 +1,61 @@
 ---
 title: Workflow Studio & Execution
-description: vNext DAG workflow editing, schema validation and execution
+description: Workflow editing, schema validation and execution
 ---
 
 # Workflow Studio & Execution
 
-TestNet uses a contract-driven **vNext DAG Workflow Engine**, allowing security engineers to rapidly create, validate, and execute complex automated pipelines via a highly interactive online code editor (**FlowEditor**).
+TestNet provides an online code editor for creating, validating, and executing workflows.
 
 ---
 
 ## 1. Creating & Importing Workflows
 
-Navigate to **"Workflow Management" -> "Workflow List"** to manage pipelines through several convenient paths:
+Navigate to **"Workflow Management" -> "Workflow List"** to manage pipelines:
 
-1. **New from Scratch**: Click **"New Workflow"** in the top right to generate a clean YAML template containing essential DAG control flow blocks (e.g., Target Input -> Subdomain Enumeration -> Vulnerability Probing).
-2. **Install from Registry Store**: Click **"Store Drawer (StoreDrawer)"** to browse the remote/builtin store (`testnet-registry`) and install verified, production-ready workflows with a single click.
-3. **Local YAML Import/Export**: Directly upload existing `.yaml` specification files from your desktop or export your active pipelines to share across teams.
+1. **New from Scratch**: Click **"New Workflow"** in the top right to generate a YAML template with basic control flow.
+2. **Install from Store**: Click **"Store"** to browse and install 8 preset workflows from the official registry.
+3. **Local Import/Export**: Upload existing `.yaml` files or export your current workflow to share with team members.
 
 ---
 
-## 2. Online Editor & Live Schema Validation
+## 2. Online Editor & Live Validation
 
-At the heart of the workflow studio is **FlowEditor**, an advanced code editor offering IDE-grade diagnostics and real-time schema validation:
+The workflow editor provides real-time syntax validation:
 
 ![Workflow Editor](/screenshots/workflow.png)
 
 ### Real-Time Dependency & Syntax Diagnostics
-As you type, TestNet's `VNextDslValidator` checks your YAML specification against schema boundaries over WebSocket/HTTP:
-- **Circular Dependency Detection**: Instantly warns if `dependsOn` structures form an infinite cycle (e.g., Step A depends on B, while B depends on A);
-- **Dataflow Reference Checks**: Verifies parameter mappings (`inputs.targetDomain.from: "subdomain-enum.output.domains"`) against parent tool outputs to catch missing keys early;
-- **Auto-completion**: Suggests available `toolId` names and parameter schemas derived from your installed Tool definitions.
 
-### Verification Panel (VerifyPanel)
-Click **"Verify & Preview"** at the bottom of the editor to slide out the interactive `VerifyPanel`:
-- **DAG Execution Tree**: Transforms raw YAML into a clear visual sequence of step cards, illustrating execution orders, parallel branches, and synchronization barriers;
-- **Error Jump**: If validation errors occur, the panel lists exact line numbers and clear descriptions. Clicking any error card immediately jumps the editor cursor to the problematic line.
+As you type, the system checks your YAML in real time:
+- **Circular Dependency Detection**: Warns if `dependsOn` structures form an infinite cycle;
+- **Dataflow Reference Checks**: Verifies cross-step parameter references are valid;
+- **Auto-completion**: Suggests available tools and parameter names.
+
+### Verification Panel
+
+Click **"Verify & Preview"** at the bottom to open the verification panel:
+- **Execution Tree**: Transforms YAML into visual step cards showing dependencies and parallel branches;
+- **Error Jump**: Lists exact line numbers and descriptions. Click to jump to the error.
 
 ![DSL Studio & Verification Panel](/screenshots/dsl-studio.png)
 
 ---
 
-## 3. Instant Execution & Parameter Configuration
+## 3. Execution & Parameter Configuration
 
-Once validation passes without errors, click **"Run Now"** at the top bar to trigger the execution engine.
+Once validation passes, click **"Run Now"** at the top bar to trigger execution.
 
-### Target Inputs & Context Injection
-An **Execution Modal (ExecuteTestModal)** opens, prompting you to define the target scope:
-- **Manual Input**: Directly enter target companies, primary domains (e.g., `testnet-project.com`), or CIDR IP ranges into the text box;
-- **Asset Graph Linkage**: Select targets straight from your existing [Asset Topology Graph](/en/assets/graph). TestNet's `TargetResolverEngine` automatically extracts related domain and IP arrays, injecting them cleanly into the execution context (`inputs`).
+### Target Inputs
 
-### Task Dispatch & Node Load Balancing
-Upon confirmation, the backend `WorkflowRunEngine` compiles the pipeline into an **Execution Envelope**:
-- Tasks are split into fine-grained execution units (`Task`) and dispatched to healthy, authorized [Go Scanning Nodes](/en/client/overview);
-- For multi-branch DAG workflows, the `TaskDispatcherService` automatically balances workloads across multiple distributed nodes for maximum scanning throughput.
+An execution modal opens for you to define the target scope:
+- **Manual Input**: Enter target companies, primary domains (e.g., `testnet-project.com`), or CIDR IP ranges;
+- **From Asset Pool**: Select existing assets as targets. The system automatically resolves related assets as workflow inputs.
+
+### Task Dispatch
+
+Upon confirmation, tasks are dispatched to online [scanning nodes](/en/client/overview):
+- Multi-branch tasks are automatically distributed across multiple nodes for parallel execution.
 
 ---
 

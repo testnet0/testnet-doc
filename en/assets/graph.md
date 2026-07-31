@@ -5,7 +5,7 @@ description: Visualize and explore relationships between network assets using th
 
 # Asset Topology Graph
 
-TestNet features an intuitive **Visual Asset Topology Graph**. By dynamically aggregating the 8 core asset models, the system constructs a relational map of nodes and edges, allowing security teams to inspect attack surfaces and cascading risks from a global, connected perspective.
+TestNet provides an intuitive **Visual Asset Topology Graph** that displays the relationships between 8 core asset types, helping security teams inspect attack surfaces from a global perspective.
 
 ---
 
@@ -18,14 +18,14 @@ TestNet features an intuitive **Visual Asset Topology Graph**. By dynamically ag
 
 ## 2. Three Interactive Graph Views
 
-The topology graph includes three visualization layouts powered by ECharts to support different analysis workflows:
+The topology graph includes three visualization layouts to support different analysis workflows:
 
 ![Asset Topology Graph](/screenshots/asset-graph.png)
 
 ### 2.1 Force-Directed Layout (Default)
-- **Visualization**: A dynamic network graph where nodes repel or attract each other based on physics simulation.
+- **Visualization**: A dynamic network graph where nodes are automatically laid out via physics simulation.
 - **Use Case**: Overall relationship discovery. Helps identify key bridge assets, such as an IP associated with many subdomains, or a host serving a massive number of API endpoints.
-- **Interaction**: Scroll wheel to zoom, drag nodes to lock their position, and pan the canvas.
+- **Interaction**: Scroll wheel to zoom, drag nodes to reposition them.
 
 ### 2.2 Tree Layout
 - **Visualization**: An hierarchical tree diagram spreading outwards from parent organization or root domains.
@@ -43,13 +43,13 @@ Nodes in the graph are distinguished by distinct icons, colors, and dimensions:
 
 ### 3.1 Visual Legend & Node Color Palette
 
-At the top-right corner of the ECharts canvas, an interactive legend allows you to filter visible node categories with a single click:
+At the top-right corner of the canvas, an interactive legend allows you to filter visible node categories with a single click:
 - **Organization & Domain Layer**: 🏢 **Company** (Blue `#3b82f6`), 🌐 **Domain** (Cyan `#06b6d4`), 📡 **Subdomain** (Green `#22c55e`)
 - **Host & Network Layer**: 🖥️ **IP Address** (Orange `#f97316`), 🔌 **Port Service** (Yellow `#eab308`)
 - **App & Security Layer**: 🌐 **Web App** (Purple `#a855f7`), 🔗 **API Endpoint** (Pink `#ec4899`), ⚠️ **Vulnerability** (Red `#ef4444`)
 
 > [!NOTE] Entity Attributes & Hierarchy
-> For exact schema fields and automated cascade linkage behaviors when opening node details drawers, please refer to **[Asset Graph Models](/en/assets/models)**.
+> The asset attributes and relationships are managed by the 8 core models. See [Asset Models](/en/assets/models).
 
 ### 3.2 Red Risk Halo
 
