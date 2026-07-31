@@ -1,3 +1,8 @@
+---
+title: Workflow Triggers & Run History
+description: Cron scheduling, event-driven auto-triggers and run tracking
+---
+
 # Workflow Triggers & Run History
 
 Beyond manual execution inside FlowEditor, TestNet provides automated **Cron Scheduling**, **Event-Driven Asset Auto-Triggers**, and comprehensive **Run History Tracking** for 24/7 autonomous security posture management.

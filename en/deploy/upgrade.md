@@ -76,9 +76,49 @@ docker rm testnet-client
 docker run -d ...  # Use original startup command
 ```
 
+## Upgrade Troubleshooting
+
 ### Services Keep Restarting After Upgrade
 
+If the server container keeps restarting after upgrade, it's usually caused by a failed database migration or incompatible configuration. Follow these steps:
+
+**1. Inspect Error Logs**
+
 ```bash
-# Inspect error logs
-docker logs testnet-server
+# View recent server logs
+docker logs testnet-server --tail 100
+
+# Check Flyway migration logs
+docker logs testnet-server 2>&1 | grep -i "flyway\|migration\|error"
 ```
+
+**2. Common Causes & Solutions**
+
+| Cause | Troubleshooting & Fix |
+|-------|----------------------|
+| **Database migration failed** | Confirm `testnet-db` is running; restore from backup if needed ([Backup & Recovery](/en/deploy/backup)) |
+| **Missing .env variables** | New versions may introduce new env vars; compare `.env` with release notes, add missing entries, then restart |
+| **Database connection failed** | Verify DB health: `docker exec testnet-db pg_isready`; check `SPRING_DATASOURCE_URL` config |
+| **Port already in use** | Check port 8081: `lsof -i:8081`, free it and restart |
+
+**3. Rollback Upgrade**
+
+If the issue cannot be resolved, roll back to the pre-upgrade version:
+
+```bash
+# Restore pre-upgrade database backup
+docker exec -i testnet-db pg_restore \
+  -U testnet -d testnet --no-owner --clean --if-exists -F c \
+  < backup_$(date +%Y%m%d).dump
+
+# Restart with previous image version
+docker compose -f deploy/docker-compose.yml up -d
+```
+
+---
+
+## Related Documentation
+
+- [Backup & Recovery](/en/deploy/backup) — Pre-upgrade backup and disaster recovery
+- [System Setup & Activation](/en/deploy/overview) — Full deployment guide
+- [FAQ](/en/guide/faq) — Deployment troubleshooting

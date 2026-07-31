@@ -76,10 +76,50 @@ docker rm testnet-client
 docker run -d ...  # 使用原来的启动命令
 ```
 
+## 升级排障
+
 ### 服务启动后一直重启
 
+升级后服务端容器反复重启，通常是数据库迁移失败或配置不兼容导致。按以下步骤排查：
+
+**1. 查看错误日志**
+
 ```bash
-# 查看错误日志
-docker logs testnet-server
+# 查看服务端最近日志
+docker logs testnet-server --tail 100
+
+# 查看 Flyway 迁移相关日志
+docker logs testnet-server 2>&1 | grep -i "flyway\|migration\|error"
 ```
+
+**2. 常见原因与解决方案**
+
+| 原因 | 排查与解决 |
+|------|------------|
+| **数据库迁移失败** | Flyway 报错时确认 `testnet-db` 正常运行；必要时从备份恢复（参考[数据备份与恢复](/deploy/backup)） |
+| **.env 缺失新变量** | 新版本可能引入新的环境变量，对比 `.env` 与发布说明，补全缺失项后重启 |
+| **数据库连接失败** | 确认数据库健康：`docker exec testnet-db pg_isready`；检查 `SPRING_DATASOURCE_URL` 配置 |
+| **端口被占用** | 检查 8081 端口：`lsof -i:8081`，释放占用后重启 |
+
+**3. 回滚升级**
+
+如果问题无法解决，可回滚到升级前版本：
+
+```bash
+# 恢复升级前的数据库备份
+docker exec -i testnet-db pg_restore \
+  -U testnet -d testnet --no-owner --clean --if-exists -F c \
+  < backup_$(date +%Y%m%d).dump
+
+# 使用旧版本镜像重启
+docker compose -f deploy/docker-compose.yml up -d
+```
+
+---
+
+## 相关文档
+
+- [数据备份与恢复](/deploy/backup) — 升级前备份与故障恢复
+- [系统部署与激活](/deploy/overview) — 完整部署流程
+- [常见问题](/guide/faq) — 部署环境排查
 

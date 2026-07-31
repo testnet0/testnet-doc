@@ -11,6 +11,8 @@ This guide helps you log in and start using the TestNet platform in 5 minutes.
 
 Access the TestNet URL (default `https://your-server:3100`) and log in with the credentials provided by the administrator.
 
+![Login Page](/screenshots/login.png)
+
 ::: info Default Credentials
 - **Username**: `admin`
 - **Password**: Automatically generated during deployment (check deployment logs or `ADMIN_INIT_PASSWORD` in `.env`).
@@ -44,7 +46,7 @@ After Docker deployment, you can reset the password to `Admin@123456` using `./t
 
 ---
 
-## Create Your First Project
+## Step 2: Create Your First Project
 
 A project serves as the logical scope for isolating assets and workflows:
 
@@ -57,7 +59,7 @@ Once created, use the **Project Switcher** in the top navigation bar to select t
 
 ---
 
-## Add Your First Asset
+## Step 3: Add Your First Asset
 
 ### Add Manually
 
@@ -75,7 +77,7 @@ Once created, use the **Project Switcher** in the top navigation bar to select t
 
 ---
 
-## Install Tools and Run Scans
+## Step 4: Install Tools and Run Scans
 
 ### Install a Tool from the Store
 
@@ -91,7 +93,7 @@ Once created, use the **Project Switcher** in the top navigation bar to select t
 3. Find the workflow you need.
 4. Click **Install**.
 
-## View Scan Results
+## Step 5: View Scan Results
 
 1. Click **Task Management** to monitor running tasks.
 2. Once complete, click **Logs** to view execution details.

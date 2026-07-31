@@ -1,3 +1,8 @@
+---
+title: Asset Operations & Management
+description: Batch import/export, multi-scope actions and audit tracking
+---
+
 # Asset Operations & Management Practices
 
 TestNet's asset management module provides high-efficiency operational tools designed for massive asset inventories, including **Batch Import/Export (Excel/CSV)**, **Multi-scope Batch Actions & Tagging**, and **Full Lifecycle Audit Tracking (History AOP)**.
@@ -44,3 +49,12 @@ Clicking the **"History"** action on any asset table row slides out a detailed a
 1. **Timestamp & Actor**: Records the user ID or the specific Task ID (`Task #XXXX`) responsible for the change;
 2. **Field Snapshot Diff**: Shows fine-grained before/after values (e.g., `status: PENDING -> ACTIVE`, or `tags: ["discovered"] -> ["discovered", "confirmed"]`);
 3. **Version Rollback**: When an accidental change overwrites important asset attributes, operators can select a target version in the history and click **"Rollback"** to restore the asset to that historical snapshot (tags, ownership, status, etc.).
+
+---
+
+## Related Documentation
+
+- [Asset Overview](/en/assets/overview) — Common operations and tag management
+- [Asset Models](/en/assets/models) — 8 core asset types and topology relationships
+- [Asset Config & Rules](/en/assets/rules) — Auto-tagging, blocklists, and vulnerability dictionaries
+- [Topology Graph](/en/assets/graph) — Visual asset relationship exploration

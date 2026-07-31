@@ -1,3 +1,8 @@
+---
+title: Task Execution Monitoring & Result Parsing
+description: Task state machine, ANSI logs and 7 parsing pipelines
+---
+
 # Task Execution Monitoring & Result Parsing
 
 When a workflow dispatches atomic `Task` envelopes to remote Go scanning nodes, security engineers can monitor execution via **Task Detail Views**, **ANSI Real-Time Terminal Logs (`LogViewer`)**, and TestNet's **7 Structured Output Parsing Pipelines (`OutputParser`)**.

@@ -1,3 +1,8 @@
+---
+title: 工作流工作室与调试
+description: vNext DAG 工作流编辑、Schema 校验与执行配置
+---
+
 # 工作流工作室与调试 (Workflow Studio)
 
 TestNet 采用合约驱动（Contract-Driven）的 **vNext DAG 工作流引擎**，允许安全人员通过高度可视化的在线代码编辑器（FlowEditor）快速创建、验证与执行自动化编排任务。
@@ -18,6 +23,8 @@ TestNet 采用合约驱动（Contract-Driven）的 **vNext DAG 工作流引擎**
 
 工作流的核心编辑界面是由高性能代码引擎驱动的 **FlowEditor**，具备 IDE 级的使用体验与实时校验机制：
 
+![工作流编辑器](/screenshots/workflow.png)
+
 ### 1. 实时语法与控制流依赖诊断
 系统内置了 `VNextDslValidator` 在线校验引擎，通过 WebSocket/HTTP 即时对输入的 YAML 代码进行解析：
 - **循环依赖检测**：检测 `dependsOn` 中是否存在死循环（如 A 依赖 B，B 又依赖 A）；
@@ -28,6 +35,8 @@ TestNet 采用合约驱动（Contract-Driven）的 **vNext DAG 工作流引擎**
 点击页面底部的 **「验证与预览 (Verify)」** 按钮，系统将在侧边展开 `VerifyPanel`：
 - **DAG 执行结构化图示**：将代码转化为直观的步骤卡片，清晰呈现步骤的前后依赖关系及并发分叉结构；
 - **错误定位跳转**：如果 YAML 存在语法或业务校验错误，面板会列出具体的行号与错误描述，点击即可一键使光标定位到错误代码行。
+
+![DSL 工作室与验证面板](/screenshots/dsl-studio.png)
 
 ---
 
@@ -44,3 +53,13 @@ TestNet 采用合约驱动（Contract-Driven）的 **vNext DAG 工作流引擎**
 点击确认运行后，后端 `WorkflowRunEngine` 引擎将生成一份完整的 **执行信封 (Execution Envelope)**：
 - 将任务拆解为细粒度的底层任务单 (`Task`)，下发到对该项目可见、且健康心跳正常的 [Go 扫描节点 (/client/overview)](/client/overview)；
 - 如果配置了多分支并行扫描，调度服务 (`TaskDispatcherService`) 会自动多节点负载均衡执行，大幅提升大规模测绘与漏洞评估效率。
+
+---
+
+## 相关文档
+
+- [工作流概述](/workflow/overview) — 核心概念与生命周期
+- [DSL 参考](/workflow/dsl-reference) — Tool/Workflow YAML 完整语法
+- [自定义 DSL](/workflow/dsl-custom) — Registry 结构与自定义工具发布
+- [触发与记录](/workflow/triggers) — Cron 定时与资产事件联动
+- [扫描节点管理](/client/overview) — 节点池状态与调度

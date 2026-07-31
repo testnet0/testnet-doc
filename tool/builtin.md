@@ -79,7 +79,7 @@ TestNet 内置 22 个安全工具，覆盖侦察、扫描、漏洞检测各阶�
 - **说明**：高速 HTTP 探活工具，可采集标题、状态码、Web 服务器、技术栈等信息
 - **输入**：子域名（SUBDOMAIN）/ IP（IP）/ 端口（PORT）
 - **输出**：Web 应用（WEB）
-- **Docker 镜像**：`projectdiscovery/httpx`
+- **Docker 镜像**：`registry.cn-hangzhou.aliyuncs.com/testnet-tools/httpx`
 
 ### Httpx-Screenshot
 

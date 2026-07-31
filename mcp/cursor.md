@@ -31,7 +31,7 @@ curl -X POST https://your-testnet-server/api/v1/auth/login \
 
 ## 在 Cursor 中配置 MCP
 
-TestNet MCP 服务基于 REST API（`/mcp/v1/tools`、`/mcp/v1/tools/call` 等端点）。Cursor 从 v0.45 起支持 HTTP 传输模式的 MCP 服务：
+TestNet MCP 服务基于 REST API（`/mcp/v1/tools`、`/mcp/v1/tools/call` 等端点）。Cursor 从 v0.45 起支持 HTTP 传输模式的 MCP 服务（版本号仅供参考，请以 Cursor 最新文档为准）：
 
 1. 打开 Cursor，进入设置：
    - 快捷键：`Ctrl + ,` (Windows/Linux) 或 `Cmd + ,` (macOS)

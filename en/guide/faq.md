@@ -34,7 +34,7 @@ Contact the system admin to re-enable your account in "**User Management**".
 **Possible Cause 1**: No online scanning nodes
 
 - Check the "**Scanning Nodes**" list to confirm there are 🟢 online nodes
-- If there are no nodes, you need to [deploy a scanning probe](/en/deploy/overview#probe-setup-horizontal-scaling) first
+- If there are no nodes, you need to [deploy a scanning probe](/en/deploy/overview#distributed-deployment) first
 
 **Possible Cause 2**: Node is disabled
 

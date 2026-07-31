@@ -1,3 +1,8 @@
+---
+title: RBAC Permissions & Department Isolation
+description: RBAC model and departmental data isolation guide
+---
+
 # RBAC Permissions & Department Isolation
 
 TestNet enforces security governance through a **Role-Based Access Control (RBAC)** architecture combined with **Departmental Data Isolation (`sysOrgCode`)**, securing actions down to individual API endpoints and UI buttons.
@@ -25,7 +30,7 @@ Every controller action in TestNet is guarded by Spring Security `@PreAuthorize(
 - **Modifications**: `asset:domain:add`, `asset:domain:edit`, `tool:spec:edit`
 - **High-Impact Actions**: `workflow:spec:run`, `asset:domain:export`, `task:instance:kill`
 
-### 2. Frontend Dynamic Menu & Action Filtering
+### Frontend Dynamic Menu & Action Filtering
 The frontend permission service dynamically evaluates authority codes upon login. Navigation sidebar items and destructive action buttons ("Delete All Assets" or "Run Remote Command") are automatically hidden or disabled for unauthorized users.
 
 ---

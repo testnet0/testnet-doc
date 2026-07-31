@@ -1,3 +1,8 @@
+---
+title: Asset Graph Models
+description: 8 core asset models and cascading topology relationships
+---
+
 # Asset Graph Models
 
 TestNet's asset management core is built upon a distributed **Asset Graph** that decomposes enterprise attack surfaces into **8 core asset models**. Each asset is stored independently and connected through cascading topology relationships (e.g., `Company -> Domain -> Subdomain -> IP -> Port -> Web -> API/Vulnerability`).

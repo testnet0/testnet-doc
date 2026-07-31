@@ -31,7 +31,7 @@ Extract the `data.token` field from the JSON response.
 
 ## Configure MCP in Cursor
 
-TestNet MCP is based on REST API endpoints (`/mcp/v1/tools`, `/mcp/v1/tools/call`, etc.). Cursor v0.45+ supports MCP servers using HTTP transport:
+TestNet MCP is based on REST API endpoints (`/mcp/v1/tools`, `/mcp/v1/tools/call`, etc.). Cursor v0.45+ supports MCP servers using HTTP transport (version number is for reference only; please refer to Cursor's latest documentation):
 
 1. Open Cursor and go to Settings:
    - Shortcut: `Ctrl + ,` (Windows/Linux) or `Cmd + ,` (macOS)

@@ -1,3 +1,8 @@
+---
+title: Workflow Studio & Execution
+description: vNext DAG workflow editing, schema validation and execution
+---
+
 # Workflow Studio & Execution
 
 TestNet uses a contract-driven **vNext DAG Workflow Engine**, allowing security engineers to rapidly create, validate, and execute complex automated pipelines via a highly interactive online code editor (**FlowEditor**).
@@ -18,6 +23,8 @@ Navigate to **"Workflow Management" -> "Workflow List"** to manage pipelines thr
 
 At the heart of the workflow studio is **FlowEditor**, an advanced code editor offering IDE-grade diagnostics and real-time schema validation:
 
+![Workflow Editor](/screenshots/workflow.png)
+
 ### Real-Time Dependency & Syntax Diagnostics
 As you type, TestNet's `VNextDslValidator` checks your YAML specification against schema boundaries over WebSocket/HTTP:
 - **Circular Dependency Detection**: Instantly warns if `dependsOn` structures form an infinite cycle (e.g., Step A depends on B, while B depends on A);
@@ -28,6 +35,8 @@ As you type, TestNet's `VNextDslValidator` checks your YAML specification agains
 Click **"Verify & Preview"** at the bottom of the editor to slide out the interactive `VerifyPanel`:
 - **DAG Execution Tree**: Transforms raw YAML into a clear visual sequence of step cards, illustrating execution orders, parallel branches, and synchronization barriers;
 - **Error Jump**: If validation errors occur, the panel lists exact line numbers and clear descriptions. Clicking any error card immediately jumps the editor cursor to the problematic line.
+
+![DSL Studio & Verification Panel](/screenshots/dsl-studio.png)
 
 ---
 
@@ -44,3 +53,13 @@ An **Execution Modal (ExecuteTestModal)** opens, prompting you to define the tar
 Upon confirmation, the backend `WorkflowRunEngine` compiles the pipeline into an **Execution Envelope**:
 - Tasks are split into fine-grained execution units (`Task`) and dispatched to healthy, authorized [Go Scanning Nodes](/en/client/overview);
 - For multi-branch DAG workflows, the `TaskDispatcherService` automatically balances workloads across multiple distributed nodes for maximum scanning throughput.
+
+---
+
+## Related Documentation
+
+- [Workflow Overview](/en/workflow/overview) — Core concepts and lifecycle
+- [DSL Reference](/en/workflow/dsl-reference) — Complete Tool/Workflow YAML syntax
+- [Custom DSL](/en/workflow/dsl-custom) — Registry structure and custom tool publishing
+- [Triggers & Logs](/en/workflow/triggers) — Cron scheduling and event-driven triggers
+- [Node Management](/en/client/overview) — Node pool status and dispatch

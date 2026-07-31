@@ -79,7 +79,7 @@ TestNet includes 22 built-in security tools, covering reconnaissance, scanning, 
 - **Description**: High-speed HTTP probing tool that can gather title, status code, web server, tech stack, and other information
 - **Input**: Subdomain (SUBDOMAIN) / IP (IP) / Port (PORT)
 - **Output**: Web application (WEB)
-- **Docker Image**: `projectdiscovery/httpx`
+- **Docker Image**: `registry.cn-hangzhou.aliyuncs.com/testnet-tools/httpx`
 
 ### Httpx-Screenshot
 

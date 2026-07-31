@@ -7,6 +7,8 @@ description: Dashboard
 
 The Dashboard is the default home page after logging in to TestNet. It displays a platform-wide overview of your data and recent activity, helping you quickly understand asset scale, task status, and system health.
 
+![Dashboard Overview](/screenshots/dashboard.png)
+
 ## Statistics Panel
 
 The top of the dashboard shows global asset count cards:

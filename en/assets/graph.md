@@ -20,6 +20,8 @@ TestNet features an intuitive **Visual Asset Topology Graph**. By dynamically ag
 
 The topology graph includes three visualization layouts powered by ECharts to support different analysis workflows:
 
+![Asset Topology Graph](/screenshots/asset-graph.png)
+
 ### 2.1 Force-Directed Layout (Default)
 - **Visualization**: A dynamic network graph where nodes repel or attract each other based on physics simulation.
 - **Use Case**: Overall relationship discovery. Helps identify key bridge assets, such as an IP associated with many subdomains, or a host serving a massive number of API endpoints.
@@ -62,4 +64,12 @@ If a particular asset node (such as a Web application or IP host) has high-sever
    - Clicking a node slides out the **Asset Detail Drawer** on the right side.
    - The drawer displays key-value metadata, tags, owners, and listed vulnerabilities.
    - A **"View Details"** button navigates directly to the comprehensive CRUD list page for that asset type.
-   - For Web assets, an **"Open Link"** button opens the target application directly in a new tab.
+    - For Web assets, an **"Open Link"** button opens the target application directly in a new tab.
+
+---
+
+## Related Documentation
+
+- [Asset Models](/en/assets/models) — 8 core asset types and topology relationships
+- [Asset Overview](/en/assets/overview) — Common operations and tag management
+- [Asset Operations](/en/assets/operations) — Batch import/export and change history
