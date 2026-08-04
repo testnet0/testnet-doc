@@ -12,6 +12,12 @@ description: 更新日志
 
 ---
 
+## [3.0.3] 2026-08-04
+
+### 🐞 问题修复
+- **`testnet.sh update` 配置文件同步从未触发**：`fetch_latest_version` 在 update 命令读取 `local_version` 之前就把 `TESTNET_VERSION` export 成远端版本，导致 `VERSION == local_version` 恒成立、`sync_latest_files` 永不执行——`docker-compose.yml` 等托管文件在 `update` 时不会被更新。现已在 fetch 之前捕获本地版本，版本比对恢复正常，配置文件可正确同步。
+- **客户端外网出口（部署下发）**：确保 v3.0.2 的 client 网络修复（`testnet-frontend` 双网络）能真正经 `testnet.sh update` 下发到既有部署。
+
 ## [3.0.2] 2026-08-04
 
 ### 🐞 问题修复

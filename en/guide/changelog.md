@@ -12,6 +12,12 @@ This document records the major version evolution, new features, and bug fixes o
 
 ---
 
+## [3.0.3] 2026-08-04
+
+### 🐞 Bug Fixes
+- **`testnet.sh update` file sync never triggered**: `fetch_latest_version` exports `TESTNET_VERSION` to the remote version before the update command reads `local_version`, so `VERSION == local_version` was always true and `sync_latest_files` never ran — meaning `docker-compose.yml` and other managed files were never updated on `update`. The local version is now captured before fetching, so the version comparison works and config files sync correctly.
+- **Client external egress (deployment rollout)**: Ensures the v3.0.2 client network fix (`testnet-frontend` dual-homing) actually reaches existing deployments via `testnet.sh update`.
+
 ## [3.0.2] 2026-08-04
 
 ### 🐞 Bug Fixes
