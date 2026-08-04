@@ -1,6 +1,6 @@
 ---
 title: System Setup & Activation Guide
-description: All-in-one deployment guide covering hardware requirements, server & client installation, and official license activation
+description: All-in-one deployment guide covering hardware requirements, server & client installation
 ---
 
 # System Setup & Activation Guide
@@ -60,9 +60,12 @@ Admin Password: Abc12345XyZ   ← Please save this random password safely!
 Open `https://your-server-ip:3100` in your web browser and sign in.
 
 > [!NOTE] Essential Server Operations
+> All commands below must be run from the `testnet-deploy` directory:
 > - Start / Stop / Restart stack: `./testnet.sh start` / `./testnet.sh stop` / `./testnet.sh restart`
 > - View real-time logs: `./testnet.sh logs` or `docker compose logs -f testnet-server`
+> - Check service status: `./testnet.sh status`
 > - Reset admin password: `./testnet.sh reset-password`
+> - Upgrade to latest version: `./testnet.sh update`
 
 ---
 
@@ -72,9 +75,11 @@ The server host runs an embedded client by default. To run distributed scanning 
 
 ### 1. Retrieve Secret Key
 
-Inspect and copy your cluster's communication secret (`TESTNET_CLIENT_SECRET`) from `deploy/.env` on the master node:
+Inspect and copy your cluster's communication secret (`TESTNET_CLIENT_SECRET`) from the deploy directory on the master node:
+
 ```bash
-grep TESTNET_CLIENT_SECRET deploy/.env
+cd testnet-deploy
+grep TESTNET_CLIENT_SECRET .env
 ```
 
 ### 2. Select Deployment Method
@@ -114,32 +119,12 @@ chmod +x testnet-client
 
 After deployment, check **"Scanning Nodes" → "Node Pool Management"** in the management dashboard to view newly joined nodes and their status.
 
+> [!TIP] Client Environment Variables Reference
+> Client nodes support overriding `config.yaml` settings via `TESTNET_` prefixed environment variables. For the complete variable list, see [Scanning Node Pool Management](/en/client/overview#client-environment-variables-reference).
+
 ---
 
-## Client Node Environment Variables Reference
+## Related Documentation
 
-Client nodes support overriding `config.yaml` settings via `TESTNET_` prefixed environment variables:
-
-| Environment Variable | Type | Description |
-|---------------------|------|-------------|
-| `TESTNET_SERVER_URL` | string | Server URL (e.g., `http://host:8081` or `https://host:3100`) |
-| `TESTNET_SERVER_TLS_ENABLED` | bool | Enable TLS (`true`/`1`) |
-| `TESTNET_SERVER_TLS_INSECURE_SKIP_VERIFY` | bool | Skip TLS certificate verification (set `true` for self-signed certs) |
-| `TESTNET_CLIENT_SECRET` | string | Node connection secret (from server `.env`) |
-| `TESTNET_NODE_NAME` | string | Node name |
-| `TESTNET_LOG_LEVEL` | string | Log level (`debug`/`info`/`warn`/`error`) |
-| `TESTNET_MAX_CONCURRENT` | int | Max concurrent tasks (default 10) |
-| `TESTNET_POLL_TIMEOUT` | duration | Long-poll timeout (e.g., `30s`) |
-| `TESTNET_POLL_INTERVAL` | duration | Long-poll interval (e.g., `5s`) |
-| `TESTNET_HEARTBEAT_INTERVAL` | duration | Heartbeat interval (e.g., `15s`) |
-| `TESTNET_DOCKER_ENABLED` | bool | Enable Docker executor (`true`/`1`) |
-| `TESTNET_DOCKER_FALLBACK_MIRRORS` | string | Fallback Docker registry mirror list (comma-separated, e.g., `docker.m.daocloud.io,huecker.io`) |
-| `TESTNET_SERVER_TIMEOUT` | duration | Server request timeout (e.g., `30s`) |
-| `TESTNET_WORK_DIR` | string | Task working directory |
-| `TESTNET_CACHE_DIR` | string | Cache directory |
-| `TESTNET_ALLOW_PRIVILEGED` | bool | Allow privileged container execution (default `false`, high risk) |
-| `TESTNET_ALLOW_SSRF` | bool | Allow SSRF probing internal networks (default `false`, high risk) |
-| `TESTNET_ALLOWED_VOLUME_PATHS` | string | Allowed mount paths (comma-separated, e.g., `/tmp/,/opt/testnet/`) |
-
-> [!WARNING]
-> `TESTNET_ALLOW_PRIVILEGED` and `TESTNET_ALLOW_SSRF` pose security risks. Only enable them in controlled internal network debugging. Keep them at default `false` in production. See [Scanning Node Security & Hardening](/en/client/security).
+- [Upgrades & Maintenance](/en/deploy/upgrade) — Version upgrades, backup & recovery, and server migration
+- [FAQ](/en/guide/faq) — Deployment troubleshooting

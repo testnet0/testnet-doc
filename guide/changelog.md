@@ -12,6 +12,11 @@ description: 更新日志
 
 ---
 
+## [3.0.2] 2026-08-04
+
+### 🐞 问题修复
+- **客户端外网出口（Docker）**：`testnet-client` 此前仅挂载 `testnet-backend` 网络（`internal: true`），该网络无外网路由。Docker 内置 DNS（`127.0.0.11`）无法转发至上游解析器，对外部域名（如 `0.zone`）返回 SERVFAIL（`server misbehaving`），随后被 SSRF 预检查拦截（`blocked as SSRF precaution`）。已为 client 新增 `testnet-frontend`（非内部）作为第二网络，与 `testnet-server` 的双网络写法一致，使原生 HTTP/DNS/TCP 执行器可访问外网，同时 db/redis 仍隔离于内部网络。
+
 ## [3.0.1] 2026-08-04
 
 ### 🚀 新增功能

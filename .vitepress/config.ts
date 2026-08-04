@@ -16,8 +16,7 @@ const zhSidebar = {
       collapsed: false,
       items: [
         { text: '系统部署与激活', link: '/deploy/overview' },
-        { text: '系统升级维护', link: '/deploy/upgrade' },
-        { text: '数据备份与恢复', link: '/deploy/backup' },
+        { text: '升级与维护', link: '/deploy/upgrade' },
       ],
     },
     {
@@ -148,8 +147,7 @@ const enSidebar = {
       collapsed: false,
       items: [
         { text: 'Setup & Activation', link: '/en/deploy/overview' },
-        { text: 'System Upgrades', link: '/en/deploy/upgrade' },
-        { text: 'Backup & Restore', link: '/en/deploy/backup' },
+        { text: 'Upgrades & Maintenance', link: '/en/deploy/upgrade' },
       ],
     },
     {

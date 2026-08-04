@@ -16,7 +16,7 @@ description: 常见问题
 **方法二**：使用部署脚本重置管理员密码
 
 ```bash
-cd deploy
+cd testnet-deploy
 ./testnet.sh reset-password
 # 重置后密码为 Admin@123456
 ```

@@ -12,6 +12,11 @@ This document records the major version evolution, new features, and bug fixes o
 
 ---
 
+## [3.0.2] 2026-08-04
+
+### 🐞 Bug Fixes
+- **Client External Egress (Docker)**: `testnet-client` was attached only to the `testnet-backend` network (`internal: true`), which has no external route. Docker's embedded DNS (`127.0.0.11`) could not forward to upstream resolvers, returning SERVFAIL ("server misbehaving") for external domains such as `0.zone`, and the SSRF pre-check then rejected the request ("blocked as SSRF precaution"). Added `testnet-frontend` (non-internal) as a second network for the client, mirroring `testnet-server`'s dual-homed configuration, so the native HTTP/DNS/TCP executors can reach external hosts while db/redis remain isolated on the internal network.
+
 ## [3.0.1] 2026-08-04
 
 ### 🚀 New Features

@@ -120,6 +120,36 @@ docker exec testnet-client docker ps
 
 ---
 
+## 客户端环境变量参考
+
+客户端节点支持通过 `TESTNET_` 前缀的环境变量覆盖 `config.yaml` 配置：
+
+| 环境变量 | 类型 | 说明 |
+|---------|------|------|
+| `TESTNET_SERVER_URL` | string | 服务端地址（如 `http://host:8081` 或 `https://host:3100`） |
+| `TESTNET_SERVER_TLS_ENABLED` | bool | 是否启用 TLS（`true`/`1`） |
+| `TESTNET_SERVER_TLS_INSECURE_SKIP_VERIFY` | bool | 是否跳过 TLS 证书校验（自签名证书时设为 `true`） |
+| `TESTNET_CLIENT_SECRET` | string | 节点连接密码（从服务端 `.env` 中获取） |
+| `TESTNET_NODE_NAME` | string | 节点名称 |
+| `TESTNET_LOG_LEVEL` | string | 日志级别（`debug`/`info`/`warn`/`error`） |
+| `TESTNET_MAX_CONCURRENT` | int | 最大并发任务数（默认 10） |
+| `TESTNET_POLL_TIMEOUT` | duration | 长轮询超时时间（如 `30s`） |
+| `TESTNET_POLL_INTERVAL` | duration | 长轮询间隔（如 `5s`） |
+| `TESTNET_HEARTBEAT_INTERVAL` | duration | 心跳上报间隔（如 `15s`） |
+| `TESTNET_DOCKER_ENABLED` | bool | 是否启用 Docker 执行器（`true`/`1`） |
+| `TESTNET_DOCKER_FALLBACK_MIRRORS` | string | 备用 Docker 镜像源列表（逗号分隔，如 `docker.m.daocloud.io,huecker.io`） |
+| `TESTNET_SERVER_TIMEOUT` | duration | 服务端请求超时（如 `30s`） |
+| `TESTNET_WORK_DIR` | string | 任务工作目录 |
+| `TESTNET_CACHE_DIR` | string | 缓存目录 |
+| `TESTNET_ALLOW_PRIVILEGED` | bool | 是否允许容器特权执行（默认 `false`，高危） |
+| `TESTNET_ALLOW_SSRF` | bool | 是否允许 SSRF 探测内网（默认 `false`，高危） |
+| `TESTNET_ALLOWED_VOLUME_PATHS` | string | 允许挂载的目录列表（逗号分隔，如 `/tmp/,/opt/testnet/`） |
+
+> [!WARNING]
+> `TESTNET_ALLOW_PRIVILEGED` 和 `TESTNET_ALLOW_SSRF` 涉及安全风险，仅在内网受控环境中调试时开启，生产环境务必保持默认 `false`。详见 [探针沙箱与安全机制](/client/security)。
+
+---
+
 ## 相关文档
 
 - [分布式部署](/deploy/overview#分布式部署) — 单机/集群容器部署与硬件配置建议

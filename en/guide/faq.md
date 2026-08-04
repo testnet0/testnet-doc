@@ -16,7 +16,7 @@ Admin goes to "**System Management**" → "**User Management**", finds the user 
 **Method 2**: Use deployment script to reset admin password
 
 ```bash
-cd deploy
+cd testnet-deploy
 ./testnet.sh reset-password
 # Password after reset is Admin@123456
 ```

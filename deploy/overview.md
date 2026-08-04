@@ -1,6 +1,6 @@
 ---
 title: 系统部署与激活指南
-description: 包含配置要求、服务端与节点安装、机器码授权激活的一体化部署指引
+description: 包含配置要求、服务端与节点安装的一体化部署指引
 ---
 
 # 系统部署与激活指南
@@ -30,6 +30,7 @@ description: 包含配置要求、服务端与节点安装、机器码授权激�
     }
     ```
     配置后执行 `sudo systemctl daemon-reload && sudo systemctl restart docker` 生效。
+
 ## 一键安装 (Docker Compose)
 
 ### 1. 第一步：运行安装
@@ -56,10 +57,13 @@ curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | 
 
 在浏览器中打开该地址，输入上述账号密码即可登录系统后台。
 
-> [!NOTE] 💡 常用控制命令参考
-> - **启动/停止/重启服务**：在 `deploy` 目录下运行 `./testnet.sh start` / `./testnet.sh stop` / `./testnet.sh restart`
-> - **查看运行日志**：运行 `./testnet.sh logs` 或 `docker compose logs -f testnet-server`
-> - **重置管理员密码**：运行 `./testnet.sh reset-password` 可将密码重置为默认的 `Admin@123456`（请在登录后第一时间在个人中心修改它）。
+> [!NOTE] 常用控制命令参考
+> 以下命令均需在 `testnet-deploy` 目录下执行：
+> - **启动/停止/重启服务**：`./testnet.sh start` / `./testnet.sh stop` / `./testnet.sh restart`
+> - **查看运行日志**：`./testnet.sh logs` 或 `docker compose logs -f testnet-server`
+> - **查看服务状态**：`./testnet.sh status`
+> - **重置管理员密码**：`./testnet.sh reset-password` 可将密码重置为默认的 `Admin@123456`（请在登录后第一时间在个人中心修改它）。
+> - **升级到最新版本**：`./testnet.sh update`
 
 ---
 
@@ -68,17 +72,22 @@ curl -fsSL https://cnb.cool/testnet0/testnet-public/-/git/raw/main/install.sh | 
 系统默认会在服务端主机上启动一个内置的客户端。如果您想在多台不同的服务器上分布式运行扫描任务，可以将其他客户端节点连接到主服务器，配置方法如下：
 
 ### 1. 第一步：获取连接密码
-其他探针节点连接主服务器时需要密码。请在主服务器的 `deploy/.env` 文件中找到并复制连接密码（CLIENT_SECRET）：
+
+其他探针节点连接主服务器时需要密码。请在主服务器的部署目录下找到并复制连接密码（CLIENT_SECRET）：
+
 ```bash
-grep TESTNET_CLIENT_SECRET deploy/.env
+cd testnet-deploy
+grep TESTNET_CLIENT_SECRET .env
 ```
 
 ### 2. 第二步：选择部署方式
 
 #### 部署方式一：通过 Docker 运行 (推荐)
+
 在任意已安装 Docker 的独立主机上执行以下命令。这需要挂载 `docker.sock`，以便探针程序能够调用 Docker 来运行各种容器化的扫描工具：
 
 如果服务端使用的是自签名证书，请添加 TLS 忽略证书校验的环境变量：
+
 ```bash
 docker run -d \
   --name testnet-client \
@@ -96,6 +105,7 @@ docker run -d \
 #### 部署方式二：直接运行二进制程序
 
 可以先生成配置文件 `config.yaml` 或直接通过环境配置：
+
 ```bash
 export TESTNET_SERVER_URL=https://your-server-ip:3100
 export TESTNET_SERVER_TLS_ENABLED=true
@@ -109,32 +119,12 @@ chmod +x testnet-client
 
 部署完成后，登录管理后台，在 **「扫描节点」->「节点池管理」** 中就能实时查看到新加入的节点，并能查看其在线状态、并发数限制等信息。
 
+> [!TIP] 客户端环境变量参考
+> 客户端节点支持通过 `TESTNET_` 前缀的环境变量覆盖 `config.yaml` 配置，完整变量列表请参阅 [扫描节点池管理](/client/overview#客户端环境变量参考)。
+
 ---
 
-## 客户端节点环境变量参考
+## 相关文档
 
-客户端节点支持通过 `TESTNET_` 前缀的环境变量覆盖 `config.yaml` 配置。完整变量列表如下：
-
-| 环境变量 | 类型 | 说明 |
-|---------|------|------|
-| `TESTNET_SERVER_URL` | string | 服务端地址（如 `http://host:8081` 或 `https://host:3100`） |
-| `TESTNET_SERVER_TLS_ENABLED` | bool | 是否启用 TLS（`true`/`1`） |
-| `TESTNET_SERVER_TLS_INSECURE_SKIP_VERIFY` | bool | 是否跳过 TLS 证书校验（自签名证书时设为 `true`） |
-| `TESTNET_CLIENT_SECRET` | string | 节点连接密码（从服务端 `.env` 中获取） |
-| `TESTNET_NODE_NAME` | string | 节点名称 |
-| `TESTNET_LOG_LEVEL` | string | 日志级别（`debug`/`info`/`warn`/`error`） |
-| `TESTNET_MAX_CONCURRENT` | int | 最大并发任务数（默认 10） |
-| `TESTNET_POLL_TIMEOUT` | duration | 长轮询超时时间（如 `30s`） |
-| `TESTNET_POLL_INTERVAL` | duration | 长轮询间隔（如 `5s`） |
-| `TESTNET_HEARTBEAT_INTERVAL` | duration | 心跳上报间隔（如 `15s`） |
-| `TESTNET_DOCKER_ENABLED` | bool | 是否启用 Docker 执行器（`true`/`1`） |
-| `TESTNET_DOCKER_FALLBACK_MIRRORS` | string | 备用 Docker 镜像源列表（逗号分隔，如 `docker.m.daocloud.io,huecker.io`） |
-| `TESTNET_SERVER_TIMEOUT` | duration | 服务端请求超时（如 `30s`） |
-| `TESTNET_WORK_DIR` | string | 任务工作目录 |
-| `TESTNET_CACHE_DIR` | string | 缓存目录 |
-| `TESTNET_ALLOW_PRIVILEGED` | bool | 是否允许容器特权执行（默认 `false`，高危） |
-| `TESTNET_ALLOW_SSRF` | bool | 是否允许 SSRF 探测内网（默认 `false`，高危） |
-| `TESTNET_ALLOWED_VOLUME_PATHS` | string | 允许挂载的目录列表（逗号分隔，如 `/tmp/,/opt/testnet/`） |
-
-> [!WARNING]
-> `TESTNET_ALLOW_PRIVILEGED` 和 `TESTNET_ALLOW_SSRF` 涉及安全风险，仅在内网受控环境中调试时开启，生产环境务必保持默认 `false`。详见 [扫描节点安全防护](/client/security)。
+- [升级与维护](/deploy/upgrade) — 版本升级、数据备份与恢复、跨服务器迁移
+- [常见问题](/guide/faq) — 部署环境排查
