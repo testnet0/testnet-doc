@@ -12,6 +12,20 @@ This document records the major version evolution, new features, and bug fixes o
 
 ---
 
+## [3.0.1] 2026-08-04
+
+### 🚀 New Features
+- **Version Management & Update Check**: The license management page now shows the current running version and the latest remote version, prompting when a new version is available. Added endpoints `GET /api/v1/license/version` and `POST /api/v1/license/version/refresh`, which compare against the remote `version.yml` from `testnet-public` (Guava cache + graceful degradation, never blocks when offline).
+- **License Expiry Awareness**: `LicenseInfoDTO` now exposes `expiresAt`, `expiringSoon`, and `expired` fields, so the license status can reflect expiring-soon (30-day warning) and expired states.
+
+### ⚡ Improvements
+- **License Management Page Refactor**: Refactored into a status view page (License Info + Version Info blocks), showing license status, machine ID, expiry time, and expiry warnings. The activation flow is consolidated into the login page to avoid duplicate entry points.
+
+### 🐞 Bug Fixes
+- Fixed TypeScript type errors in the BatchActions component caused by missing `version` / `description` fields on the `WorkflowConfig` / `ToolConfig` types.
+
+---
+
 ## [3.0.0] 2025-07-01
 
 ::: danger Critical Upgrade Notice

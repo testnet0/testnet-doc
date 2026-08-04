@@ -12,6 +12,20 @@ description: 更新日志
 
 ---
 
+## [3.0.1] 2026-08-04
+
+### 🚀 新增功能
+- **版本管理与更新检查**：授权管理页面新增产品版本检查能力，展示当前运行版本与远端最新版本，检测到新版本时提示更新。新增端点 `GET /api/v1/license/version` 与 `POST /api/v1/license/version/refresh`，通过拉取 `testnet-public` 远端 `version.yml` 进行版本比对（Guava 缓存 + 失败降级，离线不阻塞）。
+- **授权到期感知**：`LicenseInfoDTO` 新增 `expiresAt`、`expiringSoon`、`expired` 字段，授权状态可感知即将到期（30 天内预警）与已过期。
+
+### ⚡ 优化
+- **授权管理页面重构**：重构为状态查看页（授权信息 + 版本信息双区块），展示授权状态、机器码、到期时间与到期预警；激活流程统一收敛至登录页，避免重复入口。
+
+### 🐞 问题修复
+- 修复批量操作组件（BatchActions）中 `WorkflowConfig` / `ToolConfig` 类型缺失 `version` / `description` 字段导致的 TypeScript 类型错误。
+
+---
+
 ## [3.0.0] 2025-07-01
 
 ::: danger 重大升级提示
