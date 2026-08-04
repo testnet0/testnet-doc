@@ -300,7 +300,7 @@ export default defineConfig({
         ],
         footer: {
           message: 'Released under the MIT License',
-          copyright: 'Copyright © 2024-present TestNet Team',
+          copyright: 'Copyright © 2026 TestNet',
         },
         docFooter: {
           prev: 'Previous',
@@ -393,7 +393,7 @@ export default defineConfig({
 
     footer: {
       message: '基于 MIT 协议发布',
-      copyright: 'Copyright © 2024-present TestNet Team',
+      copyright: 'Copyright © 2026 TestNet',
     },
 
     docFooter: {
