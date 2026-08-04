@@ -12,16 +12,11 @@ This document records the major version evolution, new features, and bug fixes o
 
 ---
 
-## [3.0.3] 2026-08-04
-
-### 🐞 Bug Fixes
-- **`testnet.sh update` file sync never triggered**: `fetch_latest_version` exports `TESTNET_VERSION` to the remote version before the update command reads `local_version`, so `VERSION == local_version` was always true and `sync_latest_files` never ran — meaning `docker-compose.yml` and other managed files were never updated on `update`. The local version is now captured before fetching, so the version comparison works and config files sync correctly.
-- **Client external egress (deployment rollout)**: Ensures the v3.0.2 client network fix (`testnet-frontend` dual-homing) actually reaches existing deployments via `testnet.sh update`.
-
 ## [3.0.2] 2026-08-04
 
 ### 🐞 Bug Fixes
 - **Client External Egress (Docker)**: `testnet-client` was attached only to the `testnet-backend` network (`internal: true`), which has no external route. Docker's embedded DNS (`127.0.0.11`) could not forward to upstream resolvers, returning SERVFAIL ("server misbehaving") for external domains such as `0.zone`, and the SSRF pre-check then rejected the request ("blocked as SSRF precaution"). Added `testnet-frontend` (non-internal) as a second network for the client, mirroring `testnet-server`'s dual-homed configuration, so the native HTTP/DNS/TCP executors can reach external hosts while db/redis remain isolated on the internal network.
+- **`testnet.sh update` file sync never triggered**: `fetch_latest_version` exports `TESTNET_VERSION` to the remote version before the update command reads `local_version`, so `VERSION == local_version` was always true and `sync_latest_files` never ran — meaning `docker-compose.yml` and other managed files were never updated on `update`. The local version is now captured before fetching, so the version comparison works and config files sync correctly.
 
 ## [3.0.1] 2026-08-04
 

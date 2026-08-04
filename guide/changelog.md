@@ -12,16 +12,11 @@ description: 更新日志
 
 ---
 
-## [3.0.3] 2026-08-04
-
-### 🐞 问题修复
-- **`testnet.sh update` 配置文件同步从未触发**：`fetch_latest_version` 在 update 命令读取 `local_version` 之前就把 `TESTNET_VERSION` export 成远端版本，导致 `VERSION == local_version` 恒成立、`sync_latest_files` 永不执行——`docker-compose.yml` 等托管文件在 `update` 时不会被更新。现已在 fetch 之前捕获本地版本，版本比对恢复正常，配置文件可正确同步。
-- **客户端外网出口（部署下发）**：确保 v3.0.2 的 client 网络修复（`testnet-frontend` 双网络）能真正经 `testnet.sh update` 下发到既有部署。
-
 ## [3.0.2] 2026-08-04
 
 ### 🐞 问题修复
 - **客户端外网出口（Docker）**：`testnet-client` 此前仅挂载 `testnet-backend` 网络（`internal: true`），该网络无外网路由。Docker 内置 DNS（`127.0.0.11`）无法转发至上游解析器，对外部域名（如 `0.zone`）返回 SERVFAIL（`server misbehaving`），随后被 SSRF 预检查拦截（`blocked as SSRF precaution`）。已为 client 新增 `testnet-frontend`（非内部）作为第二网络，与 `testnet-server` 的双网络写法一致，使原生 HTTP/DNS/TCP 执行器可访问外网，同时 db/redis 仍隔离于内部网络。
+- **`testnet.sh update` 配置文件同步从未触发**：`fetch_latest_version` 在 update 命令读取 `local_version` 之前就把 `TESTNET_VERSION` export 成远端版本，导致 `VERSION == local_version` 恒成立、`sync_latest_files` 永不执行——`docker-compose.yml` 等托管文件在 `update` 时不会被更新。现已在 fetch 之前捕获本地版本，版本比对恢复正常，配置文件可正确同步。
 
 ## [3.0.1] 2026-08-04
 
